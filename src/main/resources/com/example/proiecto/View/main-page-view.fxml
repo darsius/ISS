@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="840.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiecto.Controller.MainPageController">
+   <children>
+      <ImageView fx:id="doughnut1ImageView" fitHeight="123.0" fitWidth="142.0" layoutX="176.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Images/doughnut1.jpeg" />
+         </image>
+      </ImageView>
+      <Pane prefHeight="80.0" prefWidth="1400.0" style="-fx-background-color: red;" />
+      <Pane layoutY="730.0" prefHeight="110.0" prefWidth="1400.0" style="-fx-background-color: blue;" />
+      <ImageView fx:id="doughnut1ImageView1" fitHeight="123.0" fitWidth="142.0" layoutX="372.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Images/doughnut2.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="doughnut1ImageView2" fitHeight="123.0" fitWidth="142.0" layoutX="368.0" layoutY="416.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Images/doughnut5.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="doughnut1ImageView3" fitHeight="123.0" fitWidth="142.0" layoutX="123.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Images/doughnut4.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="doughnut1ImageView4" fitHeight="123.0" fitWidth="142.0" layoutX="617.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Images/doughnut6.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="doughnut1ImageView5" fitHeight="113.0" fitWidth="111.0" layoutX="584.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Images/doughnut3.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="doughnut1ImageView6" fitHeight="123.0" fitWidth="142.0" layoutX="159.0" layoutY="578.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Images/doughnut7.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="doughnut1ImageView7" fitHeight="132.0" fitWidth="137.0" layoutX="387.0" layoutY="602.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Images/doughnut8.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="doughnut1ImageView8" fitHeight="178.0" fitWidth="188.0" layoutX="553.0" layoutY="517.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Images/doughnut9.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
