@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:mysql://localhost:3306/my_database</property>
+    <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+    <property name="connection.username">root</property>
+    <property name="connection.password">6162</property>
+    <mapping class="com.example.proiecto.Model.Admin"/>
+    <mapping class="com.example.proiecto.Model.Client"/>
+    <mapping class="com.example.proiecto.Model.Item"/>
+    <mapping class="com.example.proiecto.Model.Menu"/>
+    <mapping class="com.example.proiecto.Model.MenuItems"/>
+    <mapping class="com.example.proiecto.Model.Offer"/>
+    <mapping class="com.example.proiecto.Model.Order"/>
+    <mapping class="com.example.proiecto.Model.Payment"/>
+    <mapping class="com.example.proiecto.Model.UserAccount"/>
+    <!-- <property name="connection.username"/> -->
+    <!-- <property name="connection.password"/> -->
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>
