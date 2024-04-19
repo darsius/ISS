@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="840.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiecto.Controller.NavigateController">
+<AnchorPane prefHeight="840.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiecto.Controller.MainPageController">
    <children>
       <ImageView fx:id="doughnut1ImageView" fitHeight="123.0" fitWidth="142.0" layoutX="176.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -40,6 +40,8 @@
                   <Font size="19.0" />
                </font>
             </Button>
+            <Button layoutX="17.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="26.0" prefWidth="28.0" text="&lt;" />
+            <Button layoutX="50.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleForward" prefHeight="26.0" prefWidth="28.0" text="&gt;" />
          </children></Pane>
       <Pane layoutY="730.0" prefHeight="110.0" prefWidth="1400.0" style="-fx-background-color: blue;">
          <children>
