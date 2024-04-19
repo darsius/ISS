@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="840.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiecto.Controller.MainPageController">
+<AnchorPane prefHeight="840.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiecto.Controller.NavigateController">
    <children>
       <ImageView fx:id="doughnut1ImageView" fitHeight="123.0" fitWidth="142.0" layoutX="176.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -25,17 +25,17 @@
                   <Font size="25.0" />
                </font>
             </Label>
-            <Button layoutX="1300.0" layoutY="25.0" mnemonicParsing="false" text="Log Out">
+            <Button layoutX="1300.0" layoutY="25.0" mnemonicParsing="false" onAction="#switchToLogInView" text="Log Out">
                <font>
                   <Font size="19.0" />
                </font>
             </Button>
-            <Button layoutX="1200.0" layoutY="25.0" mnemonicParsing="false" text="History">
+            <Button layoutX="1200.0" layoutY="25.0" mnemonicParsing="false" onAction="#switchOrdersHistoryView" text="History">
                <font>
                   <Font size="19.0" />
                </font>
             </Button>
-            <Button layoutX="1045.0" layoutY="25.0" mnemonicParsing="false" text="Current Order">
+            <Button layoutX="1045.0" layoutY="25.0" mnemonicParsing="false" onAction="#switchToCurrentOrderView" text="Current Order">
                <font>
                   <Font size="19.0" />
                </font>
