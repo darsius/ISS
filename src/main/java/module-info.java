@@ -3,7 +3,7 @@ module com.example.proiecto {
     requires javafx.fxml;
 
     requires java.naming;
-    opens com.example.proiecto.Model to org.hibernate.orm.core;
+    opens com.example.proiecto.Model to javafx.base, javafx.fxml, org.hibernate.orm.core;
 
     requires org.controlsfx.controls;
     requires java.persistence;

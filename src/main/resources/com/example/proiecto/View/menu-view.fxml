@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="840.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiecto.Controller.Menu">
+   <children>
+      <Label layoutX="624.0" layoutY="47.0" text="Welcome, Admin">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TableView layoutX="96.0" layoutY="140.0" prefHeight="240.0" prefWidth="365.0">
+        <columns>
+          <TableColumn prefWidth="193.60405731201172" text="Doughnut Name" />
+          <TableColumn prefWidth="91.864013671875" text="Price" />
+            <TableColumn prefWidth="78.13595581054688" text="Quantity" />
+        </columns>
+      </TableView>
+      <TableView layoutX="806.0" layoutY="145.0" prefHeight="242.0" prefWidth="365.0">
+         <columns>
+            <TableColumn prefWidth="193.60405731201172" text="Offer Name" />
+            <TableColumn prefWidth="91.864013671875" text="Price" />
+            <TableColumn prefWidth="78.13595581054688" text="Quantity" />
+         </columns>
+      </TableView>
+      <Button layoutX="513.0" layoutY="345.0" mnemonicParsing="false" text="Remove From Menu" />
+      <Label layoutX="96.0" layoutY="92.0" text="Current Menu">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TableView fx:id="allDoughnutsTable" layoutX="90.0" layoutY="449.0" prefHeight="365.0" prefWidth="365.0">
+         <columns>
+            <TableColumn prefWidth="149.319580078125" text="All Doughnuts" />
+            <TableColumn prefWidth="40.31922912597656" text="Price" />
+            <TableColumn prefWidth="175.6807861328125" text="Description" />
+         </columns>
+      </TableView>
+      <Button layoutX="487.0" layoutY="784.0" mnemonicParsing="false" text="Add Item To Menu" />
+      <Label layoutX="97.0" layoutY="410.0" text="All Doughnuts">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="489.0" layoutY="740.0" mnemonicParsing="false" onAction="#updateItem" text="Update Item" />
+      <TextField fx:id="doughnutNameField" layoutX="490.0" layoutY="453.0" promptText="new name" />
+      <TextField fx:id="doughnutPriceField" layoutX="488.0" layoutY="489.0" promptText="new price" />
+      <TextArea fx:id="doughnutDescriptionField" layoutX="482.0" layoutY="526.0" prefHeight="193.0" prefWidth="200.0" promptText="new description" />
+   </children>
+</AnchorPane>

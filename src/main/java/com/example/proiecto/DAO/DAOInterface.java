@@ -7,7 +7,5 @@ public interface DAOInterface<T> {
     public int updateData(T data);
     public int deleteData(T data);
 
-
-
     List<T> getAll();
 }

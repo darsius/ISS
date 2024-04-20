@@ -6,6 +6,7 @@ import com.example.proiecto.Model.UserAccount;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,7 +14,7 @@ import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.util.Objects;
 
-public class MainPageController {
+public class MainPageController{
     ObservableList<UserAccount> allUserAccount;
 
 //    @FXML
@@ -21,6 +22,9 @@ public class MainPageController {
 
     @FXML
     public ImageView doughnut1ImageView;
+
+    @FXML
+    public TableView cartTable;
 
     @FXML
     private void handleBack(ActionEvent actionEvent) throws IOException {
@@ -32,11 +36,17 @@ public class MainPageController {
         NavigateController.getInstance().goForward(actionEvent);
     }
 
+    @FXML
+    private void addToCart(){}
+
+    @FXML
+    private void removeFromCart(){}
+
 
     public void initialize() {
-        DAOInterface<UserAccount> userAccountDAO = new UserAccountDAO();
-        allUserAccount = (ObservableList<UserAccount>) userAccountDAO.getAll();
 
-//        textField.setText(allUserAccount.toString());
+
+
+
     }
 }

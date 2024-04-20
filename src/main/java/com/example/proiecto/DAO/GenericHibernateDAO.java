@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import java.util.List;
@@ -26,8 +27,6 @@ public class GenericHibernateDAO<T> implements DAOInterface<T> {
         }
     }
 
-    // ... other methods ...
-
     @Override
     public int addData(T data) {
         return 0;
@@ -35,8 +34,29 @@ public class GenericHibernateDAO<T> implements DAOInterface<T> {
 
     @Override
     public int updateData(T data) {
-        return 0;
+        Transaction transaction = null;
+        int result = 0;
+
+        try (Session session = sessionFactory.openSession()) {
+            // Start a transaction
+            transaction = session.beginTransaction();
+
+            // Save the data object
+            session.update(data);
+
+            // Commit the transaction
+            transaction.commit();
+            result = 1; // or you can return the ID of the updated entity
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            result = -1;
+        }
+        return result;
     }
+
 
     @Override
     public int deleteData(T data) {
