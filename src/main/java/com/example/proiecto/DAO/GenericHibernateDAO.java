@@ -29,7 +29,17 @@ public class GenericHibernateDAO<T> implements DAOInterface<T> {
 
     @Override
     public int addData(T data) {
-        return 0;
+        Transaction transaction = null;
+        try (Session session = sessionFactory.openSession()) {
+            transaction = session.beginTransaction();
+            session.save(data);
+            transaction.commit();
+            return 1;  // Return 1 to indicate success
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+            return 0;  // Return 0 to indicate failure
+        }
     }
 
     @Override
