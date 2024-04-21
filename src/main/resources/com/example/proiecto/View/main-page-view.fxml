@@ -126,12 +126,12 @@
             <Image url="@../../../../Images/doughnut9.png" />
          </image>
       </ImageView>
-      <Button fx:id="addButton" layoutX="851.0" layoutY="177.0" mnemonicParsing="false" text="Add To Cart">
+      <Button fx:id="addButton" layoutX="851.0" layoutY="177.0" mnemonicParsing="false" onAction="#addToCart" text="Add To Cart">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="851.0" layoutY="240.0" mnemonicParsing="false" text="Remove From Cart">
+      <Button layoutX="851.0" layoutY="240.0" mnemonicParsing="false" onAction="#removeSelectedItem" text="Remove From Cart">
          <font>
             <Font size="20.0" />
          </font>

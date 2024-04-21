@@ -3,18 +3,19 @@ package com.example.proiecto.Controller;
 import com.example.proiecto.DAO.ItemDAO;
 import com.example.proiecto.Model.Item;
 import com.example.proiecto.Model.UserAccount;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -45,6 +46,11 @@ public class MainPageController {
     public TableView cartTable;
 
     @FXML
+    private TableColumn<Item, String> nameColumn;
+    @FXML
+    private TableColumn<Item, Number> priceColumn;
+
+    @FXML
     private Button selectDoughnutImageButton;
     @FXML
     private Button addButton;
@@ -54,6 +60,8 @@ public class MainPageController {
 
     private ItemDAO itemDAO = new ItemDAO();
 
+    private ObservableList<Item> cartItems = FXCollections.observableArrayList();
+
     public MainPageController() {
     }
 
@@ -62,6 +70,12 @@ public class MainPageController {
     }
 
     public void initialize() {
+        addButton.setOnAction(event -> addToCart());
+
+        cartTable.setItems(cartItems);
+        setupTableColumns(cartTable);
+        cartTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
         List<Item> listOfItemsFromMenu = getMenuItemsFromDatabase();
         UserAccount currentUser = LogInController.getCurrentUser();
 
@@ -76,14 +90,30 @@ public class MainPageController {
         loadImagesForMenuItems(listOfItemsFromMenu.subList(0, 9));
         addToolTipsForImageViews();
 
-        addButton.setOnAction(event -> {
-            if (selectedItem != null) {
-                System.out.println("Added: " + selectedItem.getName());
-                // You can perform additional actions here, such as adding the item to the cart
+    }
+
+    private void setupTableColumns(TableView<Item> tableView) {
+        TableColumn<Item, String> colName = new TableColumn<>("Name");
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        TableColumn<Item, BigDecimal> colPrice = new TableColumn<>("Price");
+        colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        TableColumn<Item, String> colDescription = new TableColumn<>("Description");
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        tableView.getColumns().setAll(colName, colPrice, colDescription);
+    }
+
+    @FXML
+    private void addToCart() {
+        if (selectedItem != null) {
+            if (!cartItems.contains(selectedItem)) {
+                cartItems.add(selectedItem);
+                System.out.println("Added to cart: " + selectedItem.getName());
             } else {
-                System.out.println("No item selected.");
+                System.out.println("Item already in cart.");
             }
-        });
+        } else {
+            System.out.println("No item selected.");
+        }
     }
 
     @FXML
@@ -130,5 +160,17 @@ public class MainPageController {
             }
         }
         return menuListOfItems;
+    }
+
+    @FXML
+    private void removeSelectedItem() {
+        Item selectedItem = (Item) cartTable.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            cartItems.remove(selectedItem);  // Remove the selectedItem from the observable list
+            System.out.println("Removed from cart: " + selectedItem.getName());
+            cartTable.getSelectionModel().clearSelection();  // Clear selection after removal
+        } else {
+            System.out.println("No item selected to remove.");
+        }
     }
 }
