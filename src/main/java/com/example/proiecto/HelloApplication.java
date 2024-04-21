@@ -19,7 +19,7 @@ public class HelloApplication extends Application {
 //        navigateController.setStage(stage);
 //        navigateController.switchMainPageView(new ActionEvent());
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("View/menu-view.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("View/log-in-view.fxml")));
         Scene scene = new Scene(root);
         stage.setTitle("Doughnuts Shop Project");
         stage.setScene(scene);

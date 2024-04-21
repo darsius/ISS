@@ -8,7 +8,7 @@
     <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
     <property name="connection.username">root</property>
     <property name="connection.password">6162</property>
-      <mapping class="com.example.proiecto.Model.Admin"/>
+    <mapping class="com.example.proiecto.Model.Admin"/>
     <mapping class="com.example.proiecto.Model.Client"/>
     <mapping class="com.example.proiecto.Model.Order"/>
     <mapping class="com.example.proiecto.Model.Payment"/>

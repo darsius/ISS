@@ -6,7 +6,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
+import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.util.List;
 
 public class GenericHibernateDAO<T> implements DAOInterface<T> {
@@ -26,6 +29,33 @@ public class GenericHibernateDAO<T> implements DAOInterface<T> {
             throw new ExceptionInInitializerError(ex);
         }
     }
+
+    @Override
+    public boolean exists(Object key) {
+        try (Session session = sessionFactory.openSession()) {
+            Field idField = type.getDeclaredField("id"); // Assumes that the primary key field is named "id"
+            idField.setAccessible(true);
+
+            Query query = session.createQuery("from " + type.getName() + " where " + idField.getName() + " = :id");
+            query.setParameter("id", key);
+            List<T> resultList = query.list();
+            return !resultList.isEmpty();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public T getById(Object id) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.get(type, (Serializable) id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
     @Override
     public int addData(T data) {
