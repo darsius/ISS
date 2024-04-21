@@ -3,7 +3,9 @@ package com.example.proiecto.Controller;
 import com.example.proiecto.DAO.ItemDAO;
 import com.example.proiecto.Model.Item;
 import com.example.proiecto.Model.UserAccount;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -54,6 +56,9 @@ public class MainPageController {
     @FXML
     private Button addButton;
 
+    @FXML
+    private Label totalSumLabel;
+
     private final LinkedHashMap<ImageView, Item> imageViewItemMap = new LinkedHashMap<>();
 
     private Item selectedItem;
@@ -63,6 +68,8 @@ public class MainPageController {
     private ObservableList<Item> cartItems = FXCollections.observableArrayList();
     private Map<Item, Integer> itemQuantities = new HashMap<>();
 
+    private DoubleProperty totalSum = new SimpleDoubleProperty(0.0);
+
     public MainPageController() {
     }
 
@@ -71,6 +78,7 @@ public class MainPageController {
     }
 
     public void initialize() {
+        totalSumLabel.textProperty().bind(totalSum.asString("Total: $%.2f"));
         addButton.setOnAction(event -> addToCart());
 
         cartTable.setItems(cartItems);
@@ -114,6 +122,7 @@ public class MainPageController {
                 itemQuantities.put(selectedItem, 1);
                 cartItems.add(selectedItem);  // Add new item to the observable list
             }
+            updateTotalSum();
             cartTable.refresh(); // Refresh the table to update the view
             System.out.println("Added to cart: " + selectedItem.getName() +
                     ", Quantity: " + itemQuantities.get(selectedItem));
@@ -179,10 +188,22 @@ public class MainPageController {
                 itemQuantities.remove(selectedItem);
                 cartItems.remove(selectedItem); // Remove item from the observable list if quantity goes to zero
             }
+            updateTotalSum();
             cartTable.refresh(); // Refresh the table
             System.out.println("Removed from cart: " + selectedItem.getName() + ", Remaining Quantity: " + itemQuantities.getOrDefault(selectedItem, 0));
         } else {
             System.out.println("No item selected to remove.");
         }
+    }
+
+    private void updateTotalSum() {
+        BigDecimal sum = BigDecimal.ZERO; // Start with a sum of zero
+        for (Map.Entry<Item, Integer> entry : itemQuantities.entrySet()) {
+            BigDecimal price = entry.getKey().getPrice(); // This is a BigDecimal
+            BigDecimal quantity = new BigDecimal(entry.getValue()); // Convert quantity to BigDecimal
+            BigDecimal totalPrice = price.multiply(quantity); // Multiply price by quantity
+            sum = sum.add(totalPrice); // Add the total price to the sum
+        }
+        totalSum.set(sum.doubleValue()); // Update the total sum property, convert BigDecimal to double
     }
 }

@@ -5,7 +5,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -173,11 +172,11 @@
          </font>
       </Button>
       <Button fx:id="selectDoughnutImageButton" layoutX="255.0" layoutY="116.0" mnemonicParsing="false" text="Select Image for Doughnut" />
-      <TextField layoutX="810.0" layoutY="649.0" promptText="Your total is ">
+      <Label fx:id="totalSumLabel" layoutX="902.0" layoutY="653.0" text="Cart total sum is ">
          <font>
             <Font size="20.0" />
          </font>
-      </TextField>
+      </Label>
 
    </children>
 </AnchorPane>
