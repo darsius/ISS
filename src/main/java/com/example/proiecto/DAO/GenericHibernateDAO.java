@@ -10,7 +10,7 @@ import org.hibernate.cfg.Configuration;
 import java.util.List;
 
 public class GenericHibernateDAO<T> implements DAOInterface<T> {
-    private static final SessionFactory sessionFactory = buildSessionFactory();
+    public static final SessionFactory sessionFactory = buildSessionFactory();
     private final Class<T> type;
 
     public GenericHibernateDAO(Class<T> type) {
@@ -70,7 +70,19 @@ public class GenericHibernateDAO<T> implements DAOInterface<T> {
 
     @Override
     public int deleteData(T data) {
-        return 0;
+        Transaction transaction = null;
+        try (Session session = sessionFactory.openSession()) {
+            transaction = session.beginTransaction();
+            session.delete(data);
+            transaction.commit();
+            return 1;  // Return 1 to indicate successful deletion
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback(); // Roll back the transaction in case of errors
+            }
+            e.printStackTrace();
+            return 0;  // Return 0 to indicate failure
+        }
     }
 
     @Override

@@ -1,18 +1,19 @@
 package com.example.proiecto.Model;
 
 import javax.persistence.*;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Menu {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Basic
-    @Column(name = "Admin_id")
-    private Integer adminId;
 
+    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Item> items = new ArrayList<>();
+
+    // Getters and setters
     public int getId() {
         return id;
     }
@@ -21,24 +22,11 @@ public class Menu {
         this.id = id;
     }
 
-    public Integer getAdminId() {
-        return adminId;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setAdminId(Integer adminId) {
-        this.adminId = adminId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Menu menu = (Menu) o;
-        return id == menu.id && Objects.equals(adminId, menu.adminId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, adminId);
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }

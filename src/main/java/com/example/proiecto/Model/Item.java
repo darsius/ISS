@@ -2,24 +2,41 @@ package com.example.proiecto.Model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Objects;
 
 @Entity
 public class Item {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Basic
+
     @Column(name = "name")
     private String name;
-    @Basic
+
     @Column(name = "price")
     private BigDecimal price;
-    @Basic
+
     @Column(name = "description")
     private String description;
 
+    @Column(name = "isInMenu")
+    private boolean isInMenu;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "menu_id")
+    private Menu menu;
+
+    public Item(String name, BigDecimal price, String description, boolean isInMenu) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.isInMenu = isInMenu;
+    }
+
+    public Item() {
+
+    }
+
+    // Getters and setters
     public int getId() {
         return id;
     }
@@ -52,16 +69,19 @@ public class Item {
         this.description = description;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Item item = (Item) o;
-        return id == item.id && Objects.equals(name, item.name) && Objects.equals(price, item.price) && Objects.equals(description, item.description);
+    public boolean isInMenu() {
+        return isInMenu;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, price, description);
+    public void setInMenu(boolean inMenu) {
+        isInMenu = inMenu;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
     }
 }

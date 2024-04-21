@@ -5,19 +5,16 @@ import java.util.Objects;
 
 @Entity
 public class Offer {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Basic
-    @Column(name = "description")
-    private String description;
-    @Basic
-    @Column(name = "conditions")
-    private String conditions;
-    @Basic
-    @Column(name = "Admin_id")
-    private Integer adminId;
+
+    private String title;
+    private String details;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "menu_id") // This is the foreign key column in the Offer table.
+    private Menu menu;
 
     public int getId() {
         return id;
@@ -27,40 +24,33 @@ public class Offer {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getTitle() {
+        return title;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getConditions() {
-        return conditions;
+    public String getDetails() {
+        return details;
     }
 
-    public void setConditions(String conditions) {
-        this.conditions = conditions;
+    public void setDetails(String details) {
+        this.details = details;
     }
 
-    public Integer getAdminId() {
-        return adminId;
-    }
-
-    public void setAdminId(Integer adminId) {
-        this.adminId = adminId;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Offer offer = (Offer) o;
-        return id == offer.id && Objects.equals(description, offer.description) && Objects.equals(conditions, offer.conditions) && Objects.equals(adminId, offer.adminId);
+        return id == offer.id && Objects.equals(title, offer.title) && Objects.equals(details, offer.details);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, conditions, adminId);
+        return Objects.hash(id, title, details);
     }
 }
