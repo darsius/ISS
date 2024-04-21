@@ -3,6 +3,7 @@ package com.example.proiecto.Controller;
 import com.example.proiecto.DAO.ItemDAO;
 import com.example.proiecto.Model.Item;
 import com.example.proiecto.Model.UserAccount;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,9 +17,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 public class MainPageController {
     ObservableList<UserAccount> allUserAccount;
@@ -56,11 +55,13 @@ public class MainPageController {
     private Button addButton;
 
     private final LinkedHashMap<ImageView, Item> imageViewItemMap = new LinkedHashMap<>();
+
     private Item selectedItem;
 
     private ItemDAO itemDAO = new ItemDAO();
 
     private ObservableList<Item> cartItems = FXCollections.observableArrayList();
+    private Map<Item, Integer> itemQuantities = new HashMap<>();
 
     public MainPageController() {
     }
@@ -99,18 +100,23 @@ public class MainPageController {
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         TableColumn<Item, String> colDescription = new TableColumn<>("Description");
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
-        tableView.getColumns().setAll(colName, colPrice, colDescription);
+        TableColumn<Item, Integer> colQuantity = new TableColumn<>("Quantity");
+        colQuantity.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(itemQuantities.get(cellData.getValue())));
+        tableView.getColumns().setAll(colName, colPrice, colDescription, colQuantity);
     }
 
     @FXML
     private void addToCart() {
         if (selectedItem != null) {
-            if (!cartItems.contains(selectedItem)) {
-                cartItems.add(selectedItem);
-                System.out.println("Added to cart: " + selectedItem.getName());
+            if (itemQuantities.containsKey(selectedItem)) {
+                itemQuantities.put(selectedItem, itemQuantities.get(selectedItem) + 1);
             } else {
-                System.out.println("Item already in cart.");
+                itemQuantities.put(selectedItem, 1);
+                cartItems.add(selectedItem);  // Add new item to the observable list
             }
+            cartTable.refresh(); // Refresh the table to update the view
+            System.out.println("Added to cart: " + selectedItem.getName() +
+                    ", Quantity: " + itemQuantities.get(selectedItem));
         } else {
             System.out.println("No item selected.");
         }
@@ -165,10 +171,16 @@ public class MainPageController {
     @FXML
     private void removeSelectedItem() {
         Item selectedItem = (Item) cartTable.getSelectionModel().getSelectedItem();
-        if (selectedItem != null) {
-            cartItems.remove(selectedItem);  // Remove the selectedItem from the observable list
-            System.out.println("Removed from cart: " + selectedItem.getName());
-            cartTable.getSelectionModel().clearSelection();  // Clear selection after removal
+        if (selectedItem != null && itemQuantities.containsKey(selectedItem)) {
+            int currentQuantity = itemQuantities.get(selectedItem);
+            if (currentQuantity > 1) {
+                itemQuantities.put(selectedItem, currentQuantity - 1);
+            } else {
+                itemQuantities.remove(selectedItem);
+                cartItems.remove(selectedItem); // Remove item from the observable list if quantity goes to zero
+            }
+            cartTable.refresh(); // Refresh the table
+            System.out.println("Removed from cart: " + selectedItem.getName() + ", Remaining Quantity: " + itemQuantities.getOrDefault(selectedItem, 0));
         } else {
             System.out.println("No item selected to remove.");
         }
