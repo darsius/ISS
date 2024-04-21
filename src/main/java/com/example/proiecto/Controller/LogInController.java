@@ -29,6 +29,8 @@ public class LogInController {
     @FXML
     private Button signUpBtn;
 
+    private static UserAccount currentUser;
+
     @FXML
     private void handleLogin(ActionEvent event) {
         // Check username and password (add your authentication logic here)
@@ -37,6 +39,7 @@ public class LogInController {
 
         // For demo purposes, assuming any username and password is valid
         if (isValidUser(username, password)) {
+            currentUser = new UserAccount(username, password);
             try {
                 // Load the main page FXML file
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/proiecto/View/main-page-view.fxml"));
@@ -58,6 +61,9 @@ public class LogInController {
         }
     }
 
+    public static UserAccount getCurrentUser() {
+        return currentUser;
+    }
 
     private boolean isValidUser(String username, String password) {
         // Create a DAO instance for the User entity

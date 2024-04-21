@@ -171,5 +171,7 @@
             <Font size="24.0" />
          </font>
       </Button>
+      <Button fx:id="selectDoughnutImageButton" layoutX="255.0" layoutY="116.0" mnemonicParsing="false" text="Select Image for Doughnut" />
+
    </children>
 </AnchorPane>
