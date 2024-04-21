@@ -86,52 +86,52 @@
                </font>
             </Label>
          </children></Pane>
-      <ImageView fx:id="doughnut1ImageView1" fitHeight="123.0" fitWidth="142.0" layoutX="372.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="doughnut2ImageView" fitHeight="123.0" fitWidth="142.0" layoutX="372.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Images/doughnut2.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="doughnut1ImageView2" fitHeight="123.0" fitWidth="142.0" layoutX="368.0" layoutY="416.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="doughnut5ImageView" fitHeight="123.0" fitWidth="142.0" layoutX="368.0" layoutY="416.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Images/doughnut5.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="doughnut1ImageView3" fitHeight="123.0" fitWidth="142.0" layoutX="123.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="doughnut4ImageView" fitHeight="123.0" fitWidth="142.0" layoutX="123.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Images/doughnut4.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="doughnut1ImageView4" fitHeight="123.0" fitWidth="142.0" layoutX="617.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="doughnut3ImageView" fitHeight="123.0" fitWidth="142.0" layoutX="617.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Images/doughnut6.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="doughnut1ImageView5" fitHeight="113.0" fitWidth="111.0" layoutX="584.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="doughnut6ImageView" fitHeight="113.0" fitWidth="111.0" layoutX="584.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Images/doughnut3.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="doughnut1ImageView6" fitHeight="123.0" fitWidth="142.0" layoutX="159.0" layoutY="578.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="doughnut7ImageView" fitHeight="123.0" fitWidth="142.0" layoutX="159.0" layoutY="578.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Images/doughnut7.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="doughnut1ImageView7" fitHeight="132.0" fitWidth="137.0" layoutX="387.0" layoutY="602.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="doughnut8ImageView" fitHeight="132.0" fitWidth="137.0" layoutX="387.0" layoutY="602.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Images/doughnut8.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="doughnut1ImageView8" fitHeight="178.0" fitWidth="188.0" layoutX="553.0" layoutY="517.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="doughnut9ImageView" fitHeight="178.0" fitWidth="188.0" layoutX="553.0" layoutY="517.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Images/doughnut9.png" />
          </image>
       </ImageView>
-      <Button layoutX="851.0" layoutY="177.0" mnemonicParsing="false" onAction="#addToCart" text="Add To Cart">
+      <Button fx:id="addButton" layoutX="851.0" layoutY="177.0" mnemonicParsing="false" text="Add To Cart">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="851.0" layoutY="240.0" mnemonicParsing="false" onAction="#removeFromCart" text="Remove From Cart">
+      <Button layoutX="851.0" layoutY="240.0" mnemonicParsing="false" text="Remove From Cart">
          <font>
             <Font size="20.0" />
          </font>

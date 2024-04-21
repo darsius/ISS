@@ -34,6 +34,13 @@ public class Menu {
 
     private ItemDAO itemDAO = new ItemDAO();
 
+    public Menu() {
+    }
+
+    public Menu(ItemDAO itemDAO) {
+        this.itemDAO = itemDAO;
+    }
+
     public void initialize() {
         // Load items only meant for allDoughnutsTable and doughnutsMenuTable
         loadItems();
