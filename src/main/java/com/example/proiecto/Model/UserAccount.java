@@ -12,6 +12,14 @@ public class UserAccount {
     @Basic
     @Column(name = "username")
     private String username;
+
+    public UserAccount() {
+    }
+    public UserAccount(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     @Basic
     @Column(name = "password")
     private String password;

@@ -68,12 +68,29 @@ public class LogInController {
         for (UserAccount user : userList) {
             if (user.getUsername().equals(username)) {
                 // Username found, check if the password matches
-                return user.getPassword().equals(password);
+                if (user.getPassword().equals(password)) {
+                    // Password matches, return true
+                    return true;
+                } else {
+                    // Password doesn't match, show error message
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Login Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Invalid password. Please try again.");
+                    alert.showAndWait();
+                    return false;
+                }
             }
         }
         // Username not found
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Login Error");
+        alert.setHeaderText(null);
+        alert.setContentText("User not found. Please try again.");
+        alert.showAndWait();
         return false;
     }
+
 
     @FXML
     private void handleSignUp(ActionEvent event) {
