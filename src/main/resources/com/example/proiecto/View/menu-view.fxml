@@ -44,5 +44,15 @@
       <Button fx:id="addItem" layoutX="591.0" layoutY="740.0" mnemonicParsing="false" onAction="#addItemToAllDoughnutsTable" text="Add Item" />
       <Button layoutX="689.0" layoutY="453.0" mnemonicParsing="false" onAction="#clearTextFields" text="Clear Fields" />
       <Button fx:id="deleteItem" layoutX="676.0" layoutY="740.0" mnemonicParsing="false" onAction="#removeItem" text="Remove Item" />
+      <TextField fx:id="deliveryTimeTF" layoutX="1009.0" layoutY="589.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <Button fx:id="deliveryTimeButton" layoutX="1028.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleSetDeliveryTime" text="Set Delivery Time">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

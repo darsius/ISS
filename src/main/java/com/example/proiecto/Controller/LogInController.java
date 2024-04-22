@@ -43,8 +43,13 @@ public class LogInController {
         if (isValidUser(username, password)) {
             currentUser = UserAccountDAO.getByUsername(username);
             try {
+                FXMLLoader loader;
                 // Load the main page FXML file
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/proiecto/View/main-page-view.fxml"));
+                if (currentUser.getUsername().equals("admin") && currentUser.getPassword().equals("admin")) {
+                    loader = new FXMLLoader(getClass().getResource("/com/example/proiecto/View/menu-view.fxml"));
+                } else {
+                    loader = new FXMLLoader(getClass().getResource("/com/example/proiecto/View/main-page-view.fxml"));
+                }
                 Scene scene = new Scene(loader.load());
 
                 // Get the current stage and set the new scene

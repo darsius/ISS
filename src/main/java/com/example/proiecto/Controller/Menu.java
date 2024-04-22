@@ -28,11 +28,17 @@ public class Menu {
 
     @FXML private Button addItem;
     @FXML private Button addToMenuButton;
+
+    @FXML private TextField deliveryTimeTF;
+
+    @FXML private Button deliveryTimeButton;
     private ObservableList<Item> doughnutsList = FXCollections.observableArrayList();
 
     private ObservableList<Item> doughnutsMenuList = FXCollections.observableArrayList();
 
     private ItemDAO itemDAO = new ItemDAO();
+
+    private static int deliveryTime = 20;
 
     public Menu() {
     }
@@ -80,6 +86,42 @@ public class Menu {
         allDoughnutsTable.setItems(doughnutsList);
         doughnutsMenuTable.setItems(doughnutsMenuList);
     }
+
+    @FXML
+    private void handleSetDeliveryTime(ActionEvent event) {
+        try {
+            int inputTime = Integer.parseInt(deliveryTimeTF.getText());
+            if (inputTime <= 0) {
+                throw new NumberFormatException("Delivery time must be a positive number.");
+            }
+            deliveryTime = inputTime;
+            showConfirmationAlert();
+        } catch (NumberFormatException e) {
+            showErrorAlert("Please enter a valid number for the delivery time.");
+        }
+    }
+
+    private void showConfirmationAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Delivery Time Set");
+        alert.setHeaderText(null);
+        alert.setContentText("Delivery time has been set to " + deliveryTime + " minutes.");
+        alert.showAndWait();
+    }
+
+    private void showErrorAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Invalid Input");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    // Optionally, a method to get the delivery time
+    public static int getDeliveryTimeInMinutes() {
+        return deliveryTime;
+    }
+
 
 
     private void setupTableColumns(TableView<Item> tableView) {

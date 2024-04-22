@@ -85,7 +85,7 @@ public class MainPageController extends NavigateController{
 
     private DoubleProperty totalSum = new SimpleDoubleProperty(0.0);
 
-//    public static int orderId;
+    //    public static int orderId;
     private static StringBuilder orderDetails = new StringBuilder();
 
     public MainPageController() {
@@ -101,8 +101,10 @@ public class MainPageController extends NavigateController{
     }
 
 
-
     public void initialize() {
+        System.out.println("Delivery time is: " + Menu.getDeliveryTimeInMinutes());
+
+
         logOutButton.setOnAction(event -> {
             try {
                 switchToLogIn(event);

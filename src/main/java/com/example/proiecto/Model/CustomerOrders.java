@@ -2,6 +2,7 @@ package com.example.proiecto.Model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
