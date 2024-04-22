@@ -23,25 +23,30 @@ public class NavigateController {
     private static NavigateController instance;
 
 
-    private NavigateController(){}
+    public NavigateController(){}
 
-    public static NavigateController getInstance() {
-        if (instance == null) instance = new NavigateController();
-        return instance;
-    }
+//    public static NavigateController getInstance() {
+//        if (instance == null) instance = new NavigateController();
+//        return instance;
+//    }
 
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
-    private void navigateTo(String fxmlPath, ActionEvent event) throws IOException {
-        if (currentView != null) {
-            backHistory.push(currentView);
-            forwardHistory.clear();
+    private void navigateTo(String fxmlPath, ActionEvent event) {
+        try {
+            if (currentView != null) {
+                backHistory.push(currentView);
+                forwardHistory.clear();
+            }
+            currentView = fxmlPath;
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(currentView)));
+            setUpSceneAndStage(event);
+        } catch (IOException | NullPointerException e) {
+            System.err.println("Navigation error: " + e.getMessage());
+            // Optionally display an error dialog or notification to the user
         }
-        currentView = fxmlPath;
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(currentView)));
-        setUpSceneAndStage(event);
     }
 
     public void goBack(ActionEvent event) throws IOException {
@@ -87,7 +92,15 @@ public class NavigateController {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        centerStageOnScreen();
         stage.show();
     }
+
+    protected void centerStageOnScreen() {
+        javafx.geometry.Rectangle2D screenBounds = javafx.stage.Screen.getPrimary().getVisualBounds();
+        stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
+        stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
+    }
+
 
 }

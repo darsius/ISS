@@ -25,17 +25,17 @@
                   <Font size="25.0" />
                </font>
             </Label>
-            <Button layoutX="1300.0" layoutY="25.0" mnemonicParsing="false" text="Log Out">
+            <Button fx:id="logOutButton" layoutX="1300.0" layoutY="25.0" mnemonicParsing="false" text="Log Out">
                <font>
                   <Font size="19.0" />
                </font>
             </Button>
-            <Button layoutX="1200.0" layoutY="25.0" mnemonicParsing="false" text="History">
+            <Button fx:id="goToOrdersHistoryButton" layoutX="1200.0" layoutY="25.0" mnemonicParsing="false" text="History">
                <font>
                   <Font size="19.0" />
                </font>
             </Button>
-            <Button layoutX="1045.0" layoutY="25.0" mnemonicParsing="false" text="Current Order">
+            <Button fx:id="goToOrderButton" layoutX="1045.0" layoutY="25.0" mnemonicParsing="false" text="Current Order">
                <font>
                   <Font size="19.0" />
                </font>

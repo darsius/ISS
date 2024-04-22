@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.*;
 
-public class MainPageController {
+public class MainPageController extends NavigateController{
     ObservableList<UserAccount> allUserAccount;
 
     @FXML
@@ -57,6 +57,13 @@ public class MainPageController {
     private Button addButton;
 
     @FXML
+    private Button logOutButton;
+    @FXML
+    private Button goToOrdersHistoryButton;
+    @FXML
+    private Button goToOrderButton;
+
+    @FXML
     private Label totalSumLabel;
 
     private final LinkedHashMap<ImageView, Item> imageViewItemMap = new LinkedHashMap<>();
@@ -71,6 +78,7 @@ public class MainPageController {
     private DoubleProperty totalSum = new SimpleDoubleProperty(0.0);
 
     public MainPageController() {
+
     }
 
     public MainPageController(ItemDAO itemDAO) {
@@ -78,6 +86,31 @@ public class MainPageController {
     }
 
     public void initialize() {
+        logOutButton.setOnAction(event -> {
+            try {
+                switchToLogIn(event);
+            } catch (IOException e) {
+                System.err.println("Failed to load the log-in view: " + e.getMessage());
+                e.printStackTrace();
+            }
+        });
+        goToOrdersHistoryButton.setOnAction(event -> {
+            try {
+                switchOrdersHistoryView(event);
+            } catch (IOException e) {
+                System.err.println("Failed to load the orders history view: " + e.getMessage());
+                e.printStackTrace();
+            }
+        });
+        goToOrderButton.setOnAction(event -> {
+            try {
+                switchToOrderView(event);
+            } catch (IOException e) {
+                System.err.println("Failed to load the current order view: " + e.getMessage());
+                e.printStackTrace();
+            }
+        });
+
         totalSumLabel.textProperty().bind(totalSum.asString("Total: $%.2f"));
         addButton.setOnAction(event -> addToCart());
 
@@ -206,4 +239,17 @@ public class MainPageController {
         }
         totalSum.set(sum.doubleValue()); // Update the total sum property, convert BigDecimal to double
     }
+
+    private void switchToLogIn(ActionEvent event) throws IOException {
+        super.switchToLogInView(event);
+    }
+
+    private void switchToOrdersHistoryView(ActionEvent event) throws IOException {
+        super.switchOrdersHistoryView(event);
+    }
+
+    private void switchToOrderView(ActionEvent event) throws IOException {
+        super.switchToCurrentOrderView(event);
+    }
+
 }

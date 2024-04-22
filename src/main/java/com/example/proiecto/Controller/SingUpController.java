@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SingUpController {
+public class SingUpController extends NavigateController{
 
     @FXML
     private TextField usernameTF;
@@ -80,10 +80,13 @@ public class SingUpController {
             // Get the current stage and set the new scene
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
+            super.centerStageOnScreen();
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
 }
 

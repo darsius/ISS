@@ -48,6 +48,9 @@ public class LogInController {
                 // Get the current stage and set the new scene
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
+                javafx.geometry.Rectangle2D screenBounds = javafx.stage.Screen.getPrimary().getVisualBounds();
+                stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
+                stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
