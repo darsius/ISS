@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-public class Order {
+public class CustomerOrders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -17,7 +17,7 @@ public class Order {
     @Column(name = "status")
     private String status;
     @Basic
-    @Column(name = "Client_id")
+    @Column(name = "client_id")
     private Integer clientId;
 
     public int getId() {
@@ -56,8 +56,8 @@ public class Order {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Order order = (Order) o;
-        return id == order.id && Objects.equals(date, order.date) && Objects.equals(status, order.status) && Objects.equals(clientId, order.clientId);
+        CustomerOrders that = (CustomerOrders) o;
+        return id == that.id && Objects.equals(date, that.date) && Objects.equals(status, that.status) && Objects.equals(clientId, that.clientId);
     }
 
     @Override

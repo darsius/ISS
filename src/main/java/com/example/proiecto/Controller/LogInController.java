@@ -31,6 +31,8 @@ public class LogInController {
 
     private static UserAccount currentUser;
 
+    private UserAccountDAO userDAO = new UserAccountDAO();
+
     @FXML
     private void handleLogin(ActionEvent event) {
         // Check username and password (add your authentication logic here)
@@ -39,7 +41,7 @@ public class LogInController {
 
         // For demo purposes, assuming any username and password is valid
         if (isValidUser(username, password)) {
-            currentUser = new UserAccount(username, password);
+            currentUser = UserAccountDAO.getByUsername(username);
             try {
                 // Load the main page FXML file
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/proiecto/View/main-page-view.fxml"));
@@ -70,7 +72,7 @@ public class LogInController {
 
     private boolean isValidUser(String username, String password) {
         // Create a DAO instance for the User entity
-        GenericHibernateDAO<UserAccount> userDAO = new GenericHibernateDAO<>(UserAccount.class);
+//        GenericHibernateDAO<UserAccount> userDAO = new GenericHibernateDAO<>(UserAccount.class);
 
         // Check if a user with the given username exists
         List<UserAccount> userList = userDAO.getAll(); // Assuming you have a getAll method in your DAO

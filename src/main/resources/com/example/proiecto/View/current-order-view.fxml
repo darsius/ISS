@@ -2,10 +2,13 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="840.0" prefWidth="1400.0" style="-fx-background-color: FFEC9E;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiecto.Controller.CurrentOrderController">
    <children>
@@ -79,5 +82,70 @@
             </Label>
          </children>
       </Pane>
+      <Label layoutX="115.0" layoutY="193.0" text="Order Id">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="909.0" layoutY="192.0" prefHeight="26.0" prefWidth="165.0" text="Order Details">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="114.0" layoutY="259.0" text="Order Status">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField layoutX="246.0" layoutY="181.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="243.0" layoutY="251.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="241.0" layoutY="341.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <Label layoutX="54.0" layoutY="344.0" text="Placed Order Time">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="65.0" layoutY="417.0" text="Time Until Deliver">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField layoutX="250.0" layoutY="409.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <Label layoutX="854.0" layoutY="620.0" text="Total">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField layoutX="937.0" layoutY="611.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <ScrollPane layoutX="852.0" layoutY="259.0" prefHeight="284.0" prefWidth="331.0">
+         <content>
+            <TableView fx:id="cartTable" prefHeight="282.0" prefWidth="334.0">
+               <columns>
+                  <TableColumn prefWidth="200.0" text="C1" />
+                  <TableColumn prefWidth="75.0" text="Quantity" />
+               </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

@@ -166,7 +166,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="1087.0" layoutY="644.0" mnemonicParsing="false" text="Pay &amp; Place Order">
+      <Button fx:id="payAndPlaceOrderButton" layoutX="1087.0" layoutY="644.0" mnemonicParsing="false" onAction="#handlePayAndPlaceOrder" text="Pay &amp; Place Order">
          <font>
             <Font size="24.0" />
          </font>

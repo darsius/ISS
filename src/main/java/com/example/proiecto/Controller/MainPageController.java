@@ -1,6 +1,8 @@
 package com.example.proiecto.Controller;
 
 import com.example.proiecto.DAO.ItemDAO;
+import com.example.proiecto.DAO.OrderDAO;
+import com.example.proiecto.Model.CustomerOrders;
 import com.example.proiecto.Model.Item;
 import com.example.proiecto.Model.UserAccount;
 import javafx.beans.property.DoubleProperty;
@@ -9,7 +11,6 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -19,6 +20,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.*;
 
 public class MainPageController extends NavigateController{
@@ -55,6 +57,8 @@ public class MainPageController extends NavigateController{
     private Button selectDoughnutImageButton;
     @FXML
     private Button addButton;
+    @FXML
+    private Button payAndPlaceOrderButton;
 
     @FXML
     private Button logOutButton;
@@ -72,6 +76,8 @@ public class MainPageController extends NavigateController{
 
     private ItemDAO itemDAO = new ItemDAO();
 
+    private OrderDAO orderDAO = new OrderDAO();
+
     private ObservableList<Item> cartItems = FXCollections.observableArrayList();
     private Map<Item, Integer> itemQuantities = new HashMap<>();
 
@@ -84,6 +90,12 @@ public class MainPageController extends NavigateController{
     public MainPageController(ItemDAO itemDAO) {
         this.itemDAO = itemDAO;
     }
+
+    public MainPageController(OrderDAO orderDAO) {
+        this.orderDAO = orderDAO;
+    }
+
+
 
     public void initialize() {
         logOutButton.setOnAction(event -> {
@@ -120,6 +132,7 @@ public class MainPageController extends NavigateController{
 
         List<Item> listOfItemsFromMenu = getMenuItemsFromDatabase();
         UserAccount currentUser = LogInController.getCurrentUser();
+        System.out.println("User " + currentUser.getId());
 
         if (currentUser != null &&
                 currentUser.getUsername().equals("admin") &&
@@ -250,6 +263,39 @@ public class MainPageController extends NavigateController{
 
     private void switchToOrderView(ActionEvent event) throws IOException {
         super.switchToCurrentOrderView(event);
+    }
+
+    @FXML
+    private void handlePayAndPlaceOrder(ActionEvent event) {
+        System.out.println("Pay and Place Order button pressed. Preparing order...");
+        UserAccount currentUser = LogInController.getCurrentUser(); // Placeholder for user fetching method
+
+        CustomerOrders newOrder = new CustomerOrders();
+        newOrder.setDate(new Timestamp(System.currentTimeMillis())); // Set the current time as order time
+        newOrder.setStatus("Pending"); // Assuming a default status
+        newOrder.setClientId(currentUser.getId());
+        System.out.println("Idul clientului logat este " + currentUser.getId());
+//        if (currentUser != null) {
+//            newOrder.setClientId(currentUser.getId()); // Set client ID from the current user
+//        }
+        if (orderDAO.addData(newOrder) == 1) {
+            System.out.println("Order successfully placed in the database with ID: " + newOrder.getId());
+        }  else {
+            System.out.println("Failed to place the order.");
+        }
+
+//
+//        // Saving order to the database
+//        GenericHibernateDAO<Order> orderDAO = new GenericHibernateDAO<>(Order.class);
+//        if (orderDAO.addData(newOrder) == 1) {
+//            System.out.println("Order successfully placed in the database with ID: " + newOrder.getId());
+//            // Clear the cart after placing the order
+//            cartItems.clear();
+//            itemQuantities.clear();
+//            updateTotalSum();
+//        } else {
+//            System.out.println("Failed to place the order.");
+//        }
     }
 
 }

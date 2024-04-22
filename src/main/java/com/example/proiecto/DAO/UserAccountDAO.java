@@ -11,7 +11,7 @@ public class UserAccountDAO extends  GenericHibernateDAO<UserAccount> {
         super(UserAccount.class);
     }
 
-    public UserAccount getByUsername(String username) {
+    public static UserAccount getByUsername(String username) {
         try (Session session = sessionFactory.openSession()) {
             // Create HQL query to retrieve the user by username
             String hql = "FROM UserAccount WHERE username = :username";
