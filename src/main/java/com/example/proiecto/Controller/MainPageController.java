@@ -96,7 +96,7 @@ public class MainPageController extends NavigateController{
         });
         goToOrdersHistoryButton.setOnAction(event -> {
             try {
-                switchOrdersHistoryView(event);
+                switchToOrdersHistoryView(event);
             } catch (IOException e) {
                 System.err.println("Failed to load the orders history view: " + e.getMessage());
                 e.printStackTrace();
