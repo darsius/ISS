@@ -83,6 +83,9 @@ public class MainPageController extends NavigateController{
 
     private DoubleProperty totalSum = new SimpleDoubleProperty(0.0);
 
+//    public static int orderId;
+    private static StringBuilder orderDetails = new StringBuilder();
+
     public MainPageController() {
 
     }
@@ -242,17 +245,6 @@ public class MainPageController extends NavigateController{
         }
     }
 
-    private void updateTotalSum() {
-        BigDecimal sum = BigDecimal.ZERO; // Start with a sum of zero
-        for (Map.Entry<Item, Integer> entry : itemQuantities.entrySet()) {
-            BigDecimal price = entry.getKey().getPrice(); // This is a BigDecimal
-            BigDecimal quantity = new BigDecimal(entry.getValue()); // Convert quantity to BigDecimal
-            BigDecimal totalPrice = price.multiply(quantity); // Multiply price by quantity
-            sum = sum.add(totalPrice); // Add the total price to the sum
-        }
-        totalSum.set(sum.doubleValue()); // Update the total sum property, convert BigDecimal to double
-    }
-
     private void switchToLogIn(ActionEvent event) throws IOException {
         super.switchToLogInView(event);
     }
@@ -271,31 +263,66 @@ public class MainPageController extends NavigateController{
         UserAccount currentUser = LogInController.getCurrentUser(); // Placeholder for user fetching method
 
         CustomerOrders newOrder = new CustomerOrders();
+
         newOrder.setDate(new Timestamp(System.currentTimeMillis())); // Set the current time as order time
         newOrder.setStatus("Pending"); // Assuming a default status
         newOrder.setClientId(currentUser.getId());
+
+        BigDecimal total = BigDecimal.valueOf(totalSum.get());
+
         System.out.println("Idul clientului logat este " + currentUser.getId());
-//        if (currentUser != null) {
-//            newOrder.setClientId(currentUser.getId()); // Set client ID from the current user
-//        }
+
         if (orderDAO.addData(newOrder) == 1) {
             System.out.println("Order successfully placed in the database with ID: " + newOrder.getId());
+//            orderId = newOrder.getId();
+            showSuccessAlert();
+            orderDetails
+                    .append(newOrder.getId()).append(" ")
+                    .append(newOrder.getStatus()).append(" ")
+                    .append(newOrder.getDate()).append(" ")
+                    .append(total).append(" ");
+            clearCart();
         }  else {
             System.out.println("Failed to place the order.");
+            showErrorAlert("Failed to place the order");
         }
+    }
 
-//
-//        // Saving order to the database
-//        GenericHibernateDAO<Order> orderDAO = new GenericHibernateDAO<>(Order.class);
-//        if (orderDAO.addData(newOrder) == 1) {
-//            System.out.println("Order successfully placed in the database with ID: " + newOrder.getId());
-//            // Clear the cart after placing the order
-//            cartItems.clear();
-//            itemQuantities.clear();
-//            updateTotalSum();
-//        } else {
-//            System.out.println("Failed to place the order.");
-//        }
+    private void showSuccessAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Order Successful");
+        alert.setHeaderText(null);
+        alert.setContentText("Your order has been placed successfully!");
+        alert.showAndWait();
+    }
+
+    private void showErrorAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void clearCart() {
+        cartItems.clear();
+        itemQuantities.clear();
+        updateTotalSum();
+    }
+
+    private void updateTotalSum() {
+        BigDecimal sum = BigDecimal.ZERO; // Start with a sum of zero
+        for (Map.Entry<Item, Integer> entry : itemQuantities.entrySet()) {
+            BigDecimal price = entry.getKey().getPrice(); // This is a BigDecimal
+            BigDecimal quantity = new BigDecimal(entry.getValue()); // Convert quantity to BigDecimal
+            BigDecimal totalPrice = price.multiply(quantity); // Multiply price by quantity
+            sum = sum.add(totalPrice); // Add the total price to the sum
+        }
+        totalSum.set(sum.doubleValue()); // Update the total sum property, convert BigDecimal to double
+    }
+
+    public static String returnOrderDetails() {
+        return orderDetails.toString();
     }
 
 }

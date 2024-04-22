@@ -97,17 +97,17 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField layoutX="246.0" layoutY="181.0">
+      <TextField fx:id="orderIdTF" layoutX="246.0" layoutY="181.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <TextField layoutX="243.0" layoutY="251.0">
+      <TextField fx:id="orderStatusTF" layoutX="243.0" layoutY="251.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <TextField layoutX="241.0" layoutY="341.0">
+      <TextField fx:id="orderPlacedTimeTF" layoutX="241.0" layoutY="341.0">
          <font>
             <Font size="20.0" />
          </font>
@@ -122,7 +122,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField layoutX="250.0" layoutY="409.0">
+      <TextField fx:id="orderDeliveryTimeTF" layoutX="250.0" layoutY="409.0">
          <font>
             <Font size="20.0" />
          </font>
@@ -132,7 +132,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField layoutX="937.0" layoutY="611.0">
+      <TextField fx:id="orderTotalTF" layoutX="937.0" layoutY="611.0">
          <font>
             <Font size="20.0" />
          </font>
