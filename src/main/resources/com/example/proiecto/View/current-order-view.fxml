@@ -139,7 +139,7 @@
       </TextField>
       <ScrollPane layoutX="852.0" layoutY="259.0" prefHeight="284.0" prefWidth="331.0">
          <content>
-            <TableView fx:id="cartTable" prefHeight="282.0" prefWidth="334.0">
+            <TableView fx:id="tableView" prefHeight="282.0" prefWidth="334.0">
                <columns>
                   <TableColumn prefWidth="200.0" text="C1" />
                   <TableColumn prefWidth="75.0" text="Quantity" />

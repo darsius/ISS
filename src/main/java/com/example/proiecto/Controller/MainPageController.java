@@ -79,7 +79,9 @@ public class MainPageController extends NavigateController{
     private OrderDAO orderDAO = new OrderDAO();
 
     private ObservableList<Item> cartItems = FXCollections.observableArrayList();
+    private static ObservableList<Item> cartItemsBeforePaying = FXCollections.observableArrayList();
     private Map<Item, Integer> itemQuantities = new HashMap<>();
+    private static Map<Item, Integer> itemQuantitiesBeforePaying = new HashMap<>();
 
     private DoubleProperty totalSum = new SimpleDoubleProperty(0.0);
 
@@ -135,7 +137,6 @@ public class MainPageController extends NavigateController{
 
         List<Item> listOfItemsFromMenu = getMenuItemsFromDatabase();
         UserAccount currentUser = LogInController.getCurrentUser();
-        System.out.println("User " + currentUser.getId());
 
         if (currentUser != null &&
                 currentUser.getUsername().equals("admin") &&
@@ -148,6 +149,20 @@ public class MainPageController extends NavigateController{
         loadImagesForMenuItems(listOfItemsFromMenu.subList(0, 9));
         addToolTipsForImageViews();
 
+    }
+
+    private static boolean checkForPendingOrder() {
+        UserAccount currentUser1 = LogInController.getCurrentUser();
+        if (currentUser1 != null) {
+            CustomerOrders pendingOrder = OrderDAO.getPendingOrderForUser(currentUser1.getId());
+            if (pendingOrder != null) {
+                if (pendingOrder.getClientId() == currentUser1.getId()) {
+                    System.out.println("avem order: " +pendingOrder.getId());
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private void setupTableColumns(TableView<Item> tableView) {
@@ -254,6 +269,10 @@ public class MainPageController extends NavigateController{
     }
 
     private void switchToOrderView(ActionEvent event) throws IOException {
+        if (!checkForPendingOrder()) {
+            showErrorAlert("You need to place an order first!");
+            return;
+        }
         super.switchToCurrentOrderView(event);
     }
 
@@ -272,6 +291,10 @@ public class MainPageController extends NavigateController{
 
         System.out.println("Idul clientului logat este " + currentUser.getId());
 
+        if (checkForPendingOrder()) {
+            showErrorAlert("There is an order in process");
+            return;
+        }
         if (orderDAO.addData(newOrder) == 1) {
             System.out.println("Order successfully placed in the database with ID: " + newOrder.getId());
 //            orderId = newOrder.getId();
@@ -281,6 +304,13 @@ public class MainPageController extends NavigateController{
                     .append(newOrder.getStatus()).append(" ")
                     .append(newOrder.getDate()).append(" ")
                     .append(total).append(" ");
+            System.out.println("Items from cart ");
+            System.out.println(cartItems);
+            System.out.println(itemQuantities);
+            cartItemsBeforePaying.addAll(cartItems);
+
+            itemQuantitiesBeforePaying.putAll(itemQuantities);
+
             clearCart();
         }  else {
             System.out.println("Failed to place the order.");
@@ -325,4 +355,10 @@ public class MainPageController extends NavigateController{
         return orderDetails.toString();
     }
 
+    public static List<Item> returnCartItems() {
+        return cartItemsBeforePaying;
+    }
+    public static Map<Item, Integer> returnCartQuantities() {
+        return itemQuantitiesBeforePaying;
+    }
 }
