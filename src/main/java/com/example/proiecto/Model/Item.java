@@ -2,41 +2,35 @@ package com.example.proiecto.Model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private BigDecimal price;
 
     @Column(name = "description")
     private String description;
 
-    @Column(name = "isInMenu")
+    @Column(name = "isInMenu", nullable = false)
     private boolean isInMenu;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "menu_id")
+    @ManyToOne
+    @JoinColumn(name = "menu_id", foreignKey = @ForeignKey(name = "FK_Menu_Item"))
     private Menu menu;
 
-    public Item(String name, BigDecimal price, String description, boolean isInMenu) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.isInMenu = isInMenu;
-    }
+    // Constructors, getters, and setters
 
-    public Item() {
+    public Item() {}
 
-    }
-
-    // Getters and setters
     public int getId() {
         return id;
     }
@@ -83,5 +77,18 @@ public class Item {
 
     public void setMenu(Menu menu) {
         this.menu = menu;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Item)) return false;
+        Item item = (Item) o;
+        return id == item.id && isInMenu == item.isInMenu && Objects.equals(name, item.name) && Objects.equals(price, item.price) && Objects.equals(description, item.description) && Objects.equals(menu, item.menu);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, price, description, isInMenu, menu);
     }
 }

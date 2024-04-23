@@ -1,10 +1,10 @@
 package com.example.proiecto.Controller;
 
+import com.example.proiecto.DAO.CartDAO;
+import com.example.proiecto.DAO.CartItemsDAO;
 import com.example.proiecto.DAO.ItemDAO;
 import com.example.proiecto.DAO.OrderDAO;
-import com.example.proiecto.Model.CustomerOrders;
-import com.example.proiecto.Model.Item;
-import com.example.proiecto.Model.UserAccount;
+import com.example.proiecto.Model.*;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -85,8 +85,12 @@ public class MainPageController extends NavigateController{
 
     private DoubleProperty totalSum = new SimpleDoubleProperty(0.0);
 
-    //    public static int orderId;
     private static StringBuilder orderDetails = new StringBuilder();
+
+    private CartDAO cartDAO = new CartDAO();
+    private CartItemsDAO cartItemsDAO = new CartItemsDAO();
+
+    private UserAccount currentUser;
 
     public MainPageController() {
 
@@ -138,7 +142,7 @@ public class MainPageController extends NavigateController{
         cartTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         List<Item> listOfItemsFromMenu = getMenuItemsFromDatabase();
-        UserAccount currentUser = LogInController.getCurrentUser();
+        currentUser = LogInController.getCurrentUser();
 
         if (currentUser != null &&
                 currentUser.getUsername().equals("admin") &&
@@ -186,7 +190,7 @@ public class MainPageController extends NavigateController{
                 itemQuantities.put(selectedItem, itemQuantities.get(selectedItem) + 1);
             } else {
                 itemQuantities.put(selectedItem, 1);
-                cartItems.add(selectedItem);  // Add new item to the observable list
+                cartItems.add(selectedItem);
             }
             updateTotalSum();
             cartTable.refresh(); // Refresh the table to update the view
@@ -301,19 +305,30 @@ public class MainPageController extends NavigateController{
             System.out.println("Order successfully placed in the database with ID: " + newOrder.getId());
 //            orderId = newOrder.getId();
             showSuccessAlert();
-            orderDetails
-                    .append(newOrder.getId()).append(" ")
-                    .append(newOrder.getStatus()).append(" ")
-                    .append(newOrder.getDate()).append(" ")
-                    .append(total).append(" ");
             System.out.println("Items from cart ");
             System.out.println(cartItems);
             System.out.println(itemQuantities);
+
+            Cart cart = new Cart();
+            cart.setUser(currentUser);
+            cart.setItems(cartItems);
+            cartDAO.addData(cart);
+
+            CartItems cartItems1 = new CartItems();
+
+
+//            CartItems cartItems1 = new CartItems();
+//            cartItems1.setQuantity(cartItems);
+//            System.out.println("cart items: " + cartItems1);
+//            cartItemsDAO.addData(cartItems1);
+
+
+
             cartItemsBeforePaying.addAll(cartItems);
 
             itemQuantitiesBeforePaying.putAll(itemQuantities);
 
-            clearCart();
+//            clearCart();
         }  else {
             System.out.println("Failed to place the order.");
             showErrorAlert("Failed to place the order");
@@ -363,4 +378,6 @@ public class MainPageController extends NavigateController{
     public static Map<Item, Integer> returnCartQuantities() {
         return itemQuantitiesBeforePaying;
     }
+
+
 }

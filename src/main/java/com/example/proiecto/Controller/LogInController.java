@@ -1,6 +1,5 @@
 package com.example.proiecto.Controller;
 
-import com.example.proiecto.DAO.GenericHibernateDAO;
 import com.example.proiecto.DAO.UserAccountDAO;
 import com.example.proiecto.Model.UserAccount;
 import javafx.event.ActionEvent;
@@ -98,12 +97,6 @@ public class LogInController {
                 }
             }
         }
-        // Username not found
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Login Error");
-        alert.setHeaderText(null);
-        alert.setContentText("User not found. Please try again.");
-        alert.showAndWait();
         return false;
     }
 

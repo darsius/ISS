@@ -13,7 +13,9 @@ public class Menu {
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Item> items = new ArrayList<>();
 
-    // Getters and setters
+
+    public Menu() {}
+
     public int getId() {
         return id;
     }

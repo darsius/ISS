@@ -4,7 +4,6 @@ import com.example.proiecto.Model.UserAccount;
 import org.hibernate.Session;
 
 import javax.persistence.Query;
-import java.io.Serializable;
 
 public class UserAccountDAO extends  GenericHibernateDAO<UserAccount> {
     public UserAccountDAO() {

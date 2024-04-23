@@ -1,28 +1,30 @@
 package com.example.proiecto.Model;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 public class UserAccount {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Basic
-    @Column(name = "username")
+
+    @Column(nullable = false, unique = true)
     private String username;
 
+    @Column(nullable = false)
+    private String password;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Cart cart;
+
+    // Constructors, getters, and setters
     public UserAccount() {
     }
+
     public UserAccount(String username, String password) {
         this.username = username;
         this.password = password;
     }
-
-    @Basic
-    @Column(name = "password")
-    private String password;
 
     public int getId() {
         return id;
@@ -48,24 +50,11 @@ public class UserAccount {
         this.password = password;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserAccount that = (UserAccount) o;
-        return id == that.id && Objects.equals(username, that.username) && Objects.equals(password, that.password);
+    public Cart getCart() {
+        return cart;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, username, password);
-    }
-
-    @Override
-    public String toString() {
-        return "UserAccount{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                '}';
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }

@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Objects;
@@ -36,34 +37,16 @@ public class NavigateController {
 
     private void navigateTo(String fxmlPath, ActionEvent event) {
         try {
-            if (currentView != null) {
-                backHistory.push(currentView);
-                forwardHistory.clear();
-            }
             currentView = fxmlPath;
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(currentView)));
+            URL url = getClass().getResource(currentView);
+            if (url == null) {
+                throw new IOException("Cannot load resource: " + currentView);
+            }
+            root = FXMLLoader.load(url);
             setUpSceneAndStage(event);
-        } catch (IOException | NullPointerException e) {
-            System.err.println("Navigation error: " + e.getMessage());
-            // Optionally display an error dialog or notification to the user
-        }
-    }
-
-    public void goBack(ActionEvent event) throws IOException {
-        if (!backHistory.isEmpty()) {
-            forwardHistory.push(currentView);
-            currentView = backHistory.pop();
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(currentView)));
-            setUpSceneAndStage(event);
-        }
-    }
-
-    public void goForward(ActionEvent event) throws IOException {
-        if (!forwardHistory.isEmpty()) {
-            backHistory.push(currentView);
-            currentView = forwardHistory.pop();
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(currentView)));
-            setUpSceneAndStage(event);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to load FXML", e);
         }
     }
 

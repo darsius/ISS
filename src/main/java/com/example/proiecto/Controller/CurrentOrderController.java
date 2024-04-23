@@ -1,6 +1,8 @@
 package com.example.proiecto.Controller;
 
+import com.example.proiecto.DAO.CartItemsDAO;
 import com.example.proiecto.DAO.OrderDAO;
+import com.example.proiecto.Model.Cart;
 import com.example.proiecto.Model.CustomerOrders;
 import com.example.proiecto.Model.Item;
 import com.example.proiecto.Model.UserAccount;
@@ -18,6 +20,9 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class CurrentOrderController extends NavigateController{
     @FXML
@@ -41,10 +46,39 @@ public class CurrentOrderController extends NavigateController{
     @FXML
     private TableView tableView;
 
+//    private CartItemsDAO cartItemsDAO;
+
+    private List<Item> cartItems = new ArrayList<>();
+    private Map<Item, Integer> cartItemsWithQuantities;
+    private UserAccount currentUser;
+
+    private List<Item> cartItms;
+
+    private CustomerOrders order;
+
 
     public void initialize() {
+        currentUser = LogInController.getCurrentUser();
+        List<Item> l = MainPageController.returnCartItems();
+        cartItems.addAll(l);
+        l.clear();
+        System.out.println("Id of the user is " + currentUser.getId());
+
+        Cart cart = currentUser.getCart();
+        cartItms = cart.getItems();
+        for (Item i: cartItms) {
+            System.out.println(i.getName() + " " + i.getPrice());
+        }
+
+        order = OrderDAO.getPendingOrderForUser(currentUser.getId());
+        //order e null
+        int clientId = order.getClientId();
+
+        System.out.println("Id ul clientului la order este "+ clientId);
+
+
         tableView.refresh();
-        UserAccount currentUser = LogInController.getCurrentUser();
+
         if (currentUser != null) {
             CustomerOrders pendingOrder = OrderDAO.getPendingOrderForUser(currentUser.getId());
             if (pendingOrder != null) {
@@ -54,8 +88,6 @@ public class CurrentOrderController extends NavigateController{
             }
         }
 
-        System.out.println("The cart items " + MainPageController.returnCartItems());
-        System.out.println("The quantities from cart " + MainPageController.returnCartQuantities());
         logOutButton.setOnAction(event -> {
             try {
                 switchToLogInView(event);
@@ -87,12 +119,14 @@ public class CurrentOrderController extends NavigateController{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
         String formattedTime = currentTime.format(formatter);
 
+
         String orderDetails = MainPageController.returnOrderDetails();
         String[] word = orderDetails.split(" ");
-        orderIdTF.setText(word[0]);
-        orderStatusTF.setText(word[1]);
+
+        orderIdTF.setText(String.valueOf(order.getId()));
+        orderStatusTF.setText(order.getStatus());
         orderPlacedTimeTF.setText(formattedTime);
-        orderTotalTF.setText(word[4] + " RON");
+//        orderTotalTF.setText(word[4] + " RON");
         //delivery time - current time for "time until delivery"
     }
 
@@ -119,7 +153,7 @@ public class CurrentOrderController extends NavigateController{
         tableView.getColumns().setAll(colName, colPrice, colDescription, colQuantity);
 
         // Set the items to the table
-        tableView.setItems(FXCollections.observableArrayList(MainPageController.returnCartItems()));
+        tableView.setItems(FXCollections.observableArrayList(cartItms));
     }
 
 }
