@@ -18,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -56,8 +57,13 @@ public class CurrentOrderController extends NavigateController{
 
     private CustomerOrders order;
 
+    private LocalTime deliveryTime;
+
 
     public void initialize() {
+        deliveryTime = Menu.getDeliveryTimeInMinutes();
+
+
         currentUser = LogInController.getCurrentUser();
         List<Item> l = MainPageController.returnCartItems();
         cartItems.addAll(l);
@@ -115,6 +121,11 @@ public class CurrentOrderController extends NavigateController{
     }
 
     private void seUpDetailsField() {
+        Timestamp orderTimestamp = order.getDate(); // Assuming getDate() returns the timestamp when the order was placed
+        LocalTime orderTime = orderTimestamp.toLocalDateTime().toLocalTime();
+        DateTimeFormatter formatterPlacedOrder = DateTimeFormatter.ofPattern("hh:mm a");
+        String formattedTimeForPlacedOrder = orderTime.format(formatterPlacedOrder);
+
         LocalTime currentTime = LocalTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
         String formattedTime = currentTime.format(formatter);
@@ -125,7 +136,11 @@ public class CurrentOrderController extends NavigateController{
 
         orderIdTF.setText(String.valueOf(order.getId()));
         orderStatusTF.setText(order.getStatus());
-        orderPlacedTimeTF.setText(formattedTime);
+        orderPlacedTimeTF.setText(formattedTimeForPlacedOrder);
+        orderDeliveryTimeTF.setText(String.valueOf(Math.min(orderTime.getMinute() + deliveryTime.getMinute() - currentTime.getMinute(), 0)) + " minutes");
+        if (orderDeliveryTimeTF.getText().equals("0 minutes")) {
+            System.out.println("the order has been delivered!");
+        }
 //        orderTotalTF.setText(word[4] + " RON");
         //delivery time - current time for "time until delivery"
     }

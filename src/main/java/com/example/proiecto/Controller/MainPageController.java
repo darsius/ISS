@@ -21,6 +21,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.time.LocalTime;
 import java.util.*;
 
 public class MainPageController extends NavigateController{
@@ -92,6 +93,8 @@ public class MainPageController extends NavigateController{
 
     private UserAccount currentUser;
 
+    private LocalTime deliveryTime;
+
     public MainPageController() {
 
     }
@@ -106,7 +109,8 @@ public class MainPageController extends NavigateController{
 
 
     public void initialize() {
-        System.out.println("Delivery time is: " + Menu.getDeliveryTimeInMinutes());
+        deliveryTime =  Menu.getDeliveryTimeInMinutes();
+        System.out.println("Delivery time is: " + deliveryTime);
 
 
         logOutButton.setOnAction(event -> {

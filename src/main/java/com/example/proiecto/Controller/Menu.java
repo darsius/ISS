@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.math.BigDecimal;
+import java.time.LocalTime;
 import java.util.List;
 
 public class Menu {
@@ -38,7 +39,7 @@ public class Menu {
 
     private ItemDAO itemDAO = new ItemDAO();
 
-    private static int deliveryTime = 20;
+    private static LocalTime deliveryTime = LocalTime.of(0, 20);
 
     public Menu() {
     }
@@ -90,8 +91,8 @@ public class Menu {
     @FXML
     private void handleSetDeliveryTime(ActionEvent event) {
         try {
-            int inputTime = Integer.parseInt(deliveryTimeTF.getText());
-            if (inputTime <= 0) {
+            LocalTime inputTime = LocalTime.ofSecondOfDay(Integer.parseInt(deliveryTimeTF.getText()));
+            if (inputTime.getMinute() <= 0) {
                 throw new NumberFormatException("Delivery time must be a positive number.");
             }
             deliveryTime = inputTime;
@@ -118,7 +119,7 @@ public class Menu {
     }
 
     // Optionally, a method to get the delivery time
-    public static int getDeliveryTimeInMinutes() {
+    public static LocalTime getDeliveryTimeInMinutes() {
         return deliveryTime;
     }
 
