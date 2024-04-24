@@ -15,12 +15,9 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-//        NavigateController navigateController = NavigateController.getInstance();
-//        navigateController.setStage(stage);
-//        navigateController.switchMainPageView(new ActionEvent());
-
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("View/log-in-view.fxml")));
         Scene scene = new Scene(root);
+//        scene.getStylesheets().add(String.valueOf(getClass().getResource("css/styles.css")));
         stage.setTitle("Doughnuts Shop Project");
         stage.setScene(scene);
         stage.show();

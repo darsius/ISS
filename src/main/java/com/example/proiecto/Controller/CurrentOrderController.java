@@ -131,18 +131,14 @@ public class CurrentOrderController extends NavigateController{
         String formattedTime = currentTime.format(formatter);
 
 
-        String orderDetails = MainPageController.returnOrderDetails();
-        String[] word = orderDetails.split(" ");
-
         orderIdTF.setText(String.valueOf(order.getId()));
         orderStatusTF.setText(order.getStatus());
         orderPlacedTimeTF.setText(formattedTimeForPlacedOrder);
         orderDeliveryTimeTF.setText(String.valueOf(Math.min(orderTime.getMinute() + deliveryTime.getMinute() - currentTime.getMinute(), 0)) + " minutes");
-        if (orderDeliveryTimeTF.getText().equals("0 minutes")) {
+        if (orderDeliveryTimeTF.getText().equals("1 minutes")) {
             System.out.println("the order has been delivered!");
         }
-//        orderTotalTF.setText(word[4] + " RON");
-        //delivery time - current time for "time until delivery"
+        orderTotalTF.setText(MainPageController.returnTotalSum() + " $");
     }
 
     private void setupTableColumns() {

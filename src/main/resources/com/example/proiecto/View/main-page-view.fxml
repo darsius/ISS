@@ -20,71 +20,99 @@
       </ImageView>
       <Pane prefHeight="80.0" prefWidth="1400.0" style="-fx-background-color: #A8F594;">
          <children>
-            <Label layoutX="119.0" layoutY="26.0" style="-fx-font-family: Comic Sans MS;" text="La Donuț">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
             <Button fx:id="logOutButton" layoutX="1300.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #049E99;" text="Log Out" textFill="WHITE">
                <font>
-                  <Font size="19.0" />
+                  <Font name="DIN Alternate Bold" size="19.0" />
                </font>
             </Button>
-            <Button fx:id="goToOrdersHistoryButton" layoutX="1200.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #049E99;" text="History" textFill="WHITE">
+            <Button fx:id="goToOrdersHistoryButton" layoutX="1205.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #049E99;" text="History" textFill="WHITE">
                <font>
-                  <Font size="19.0" />
+                  <Font name="DIN Alternate Bold" size="19.0" />
                </font>
             </Button>
-            <Button fx:id="goToOrderButton" layoutX="1045.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #049E99;" text="Current Order" textFill="WHITE">
+            <Button fx:id="goToOrderButton" layoutX="1052.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #049E99;" text="Current Order" textFill="WHITE">
                <font>
-                  <Font size="19.0" />
+                  <Font name="DIN Alternate Bold" size="19.0" />
                </font>
             </Button>
-            <Button layoutX="17.0" layoutY="28.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="28.0" text="&lt;" />
-            <Button layoutX="50.0" layoutY="28.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="28.0" text="&gt;" />
+            <ImageView fitHeight="97.0" fitWidth="131.0" layoutX="50.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Images/logo.png" />
+               </image>
+            </ImageView>
          </children></Pane>
       <Pane layoutY="730.0" prefHeight="110.0" prefWidth="1400.0" style="-fx-background-color: #A8F594;">
          <children>
-            <Label layoutX="18.0" layoutY="12.0" text="Contact" textFill="#135e0f">
+            <Label layoutX="82.0" layoutY="12.0" text="Contact" textFill="#135e0f">
                <font>
-                  <Font size="23.0" />
+                  <Font name="DIN Alternate Bold" size="23.0" />
                </font>
             </Label>
-            <Label layoutX="42.0" layoutY="38.0" text="+40766489390" textFill="#135e0f">
+            <Label layoutX="82.0" layoutY="38.0" text="+40766489390" textFill="#135e0f">
                <font>
-                  <Font size="19.0" />
+                  <Font name="DIN Alternate Bold" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="42.0" layoutY="60.0" text="donuts.12@gmail.com" textFill="#135e0f">
+            <Label layoutX="82.0" layoutY="60.0" text="donuts.12@gmail.com" textFill="#135e0f">
                <font>
-                  <Font size="19.0" />
+                  <Font name="DIN Alternate Bold" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="1300.0" layoutY="20.0" text="Instagram" textFill="#135e0f">
+            <Label layoutX="1300.0" layoutY="20.0" text="La_Donut" textFill="#135e0f">
                <font>
-                  <Font size="19.0" />
+                  <Font name="DIN Alternate Bold" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="1300.0" layoutY="54.0" text="Facebook" textFill="#135e0f">
+            <Label layoutX="1300.0" layoutY="57.0" text="LaDonut" textFill="#135e0f">
                <font>
-                  <Font size="19.0" />
+                  <Font name="DIN Alternate Bold" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="380.0" layoutY="16.0" text="Adress" textFill="#135e0f">
+            <Label layoutX="446.0" layoutY="16.0" text="Adress" textFill="#135e0f">
                <font>
-                  <Font size="23.0" />
+                  <Font name="DIN Alternate Bold" size="23.0" />
                </font>
             </Label>
-            <Label layoutX="426.0" layoutY="47.0" text="Bulevardul 1 Decembrie, nr 88" textFill="#135e0f">
+            <Label layoutX="446.0" layoutY="47.0" text="Bulevardul 1 Decembrie, nr 88" textFill="#135e0f">
                <font>
-                  <Font size="19.0" />
+                  <Font name="DIN Alternate Bold" size="19.0" />
                </font>
             </Label>
             <Label layoutX="838.0" layoutY="16.0" text="2023 Best Doughnut Shop Award" textFill="#135e0f">
                <font>
-                  <Font size="23.0" />
+                  <Font name="DIN Alternate Bold" size="23.0" />
                </font>
             </Label>
+            <Label layoutX="838.0" layoutY="54.0" text="2021 Summer Doughnut Contest" textFill="#135e0f">
+               <font>
+                  <Font name="DIN Alternate Bold" size="23.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="56.0" fitWidth="57.0" layoutX="13.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Images/contact.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="68.0" fitWidth="50.0" layoutX="383.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Images/location.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="89.0" fitWidth="92.0" layoutX="755.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Images/trophy.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="50.0" layoutX="1245.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Images/log.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="39.0" fitWidth="78.0" layoutX="1251.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Images/facebook.png" />
+               </image>
+            </ImageView>
          </children></Pane>
       <ImageView fx:id="doughnut2ImageView" fitHeight="123.0" fitWidth="142.0" layoutX="372.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -128,17 +156,17 @@
       </ImageView>
       <Button fx:id="addButton" layoutX="851.0" layoutY="177.0" mnemonicParsing="false" onAction="#addToCart" style="-fx-background-color: #049E99;" text="Add To Cart" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font name="DIN Alternate Bold" size="20.0" />
          </font>
       </Button>
       <Button layoutX="851.0" layoutY="240.0" mnemonicParsing="false" onAction="#removeSelectedItem" style="-fx-background-color: #049E99;" text="Remove From Cart" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font name="DIN Alternate Bold" size="20.0" />
          </font>
       </Button>
       <Label layoutX="1161.0" layoutY="132.0" text="Upcoming..." textFill="#135e0f">
          <font>
-            <Font size="24.0" />
+            <Font name="DIN Alternate Bold" size="27.0" />
          </font>
       </Label>
       <ScrollPane layoutX="842.0" layoutY="326.0" prefHeight="284.0" prefWidth="331.0">
@@ -153,12 +181,12 @@
       </ScrollPane>
       <Button fx:id="payAndPlaceOrderButton" layoutX="982.0" layoutY="641.0" mnemonicParsing="false" onAction="#handlePayAndPlaceOrder" style="-fx-background-color: #025295;" text="Pay &amp; Place Order" textFill="WHITE">
          <font>
-            <Font size="22.0" />
+            <Font name="DIN Alternate Bold" size="22.0" />
          </font>
       </Button>
       <Button fx:id="selectDoughnutImageButton" layoutX="101.0" layoutY="130.0" mnemonicParsing="false" style="-fx-background-color: #049E99;" text="Select Image for Doughnut" textFill="WHITE">
          <font>
-            <Font size="17.0" />
+            <Font name="DIN Alternate Bold" size="17.0" />
          </font></Button>
       <Label fx:id="totalSumLabel" layoutX="850.0" layoutY="653.0" text="total" textFill="#115679">
          <font>
@@ -167,7 +195,7 @@
       </Label>
       <Label layoutX="1196.0" layoutY="172.0" prefHeight="0.0" prefWidth="184.0" text="Offers of the week" textFill="#135e0f">
          <font>
-            <Font size="24.0" />
+            <Font name="DIN Alternate Bold" size="24.0" />
          </font>
       </Label>
 

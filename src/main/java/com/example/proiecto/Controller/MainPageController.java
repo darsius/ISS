@@ -87,6 +87,8 @@ public class MainPageController extends NavigateController{
 
     private DoubleProperty totalSum = new SimpleDoubleProperty(0.0);
 
+    private static BigDecimal sumForCurrentOrder = BigDecimal.valueOf(0.0);
+
     private static StringBuilder orderDetails = new StringBuilder();
 
     private CartDAO cartDAO = new CartDAO();
@@ -95,6 +97,9 @@ public class MainPageController extends NavigateController{
     private UserAccount currentUser;
 
     private LocalTime deliveryTime;
+
+    private ImageView currentlyHighlighted = null;
+
 
     public MainPageController() {
 
@@ -186,6 +191,19 @@ public class MainPageController extends NavigateController{
         TableColumn<Item, Integer> colQuantity = new TableColumn<>("Quantity");
         colQuantity.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(itemQuantities.get(cellData.getValue())));
         tableView.getColumns().setAll(colName, colPrice, colDescription, colQuantity);
+
+        tableView.setRowFactory(tv -> new TableRow<Item>() {
+            @Override
+            protected void updateItem(Item item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null || empty) {
+                    setStyle(""); // Reset to default style when not in use.
+                } else {
+                    // Apply custom style
+                    setStyle("-fx-background-color: #A8F594;");
+                }
+            }
+        });
     }
 
     @FXML
@@ -209,6 +227,18 @@ public class MainPageController extends NavigateController{
     @FXML
     private void handleImageViewClick(MouseEvent event) {
         ImageView clickedImageView = (ImageView) event.getSource();
+
+        // Reset the previous highlighted ImageView if it exists
+        if (currentlyHighlighted != null && currentlyHighlighted != clickedImageView) {
+            currentlyHighlighted.setStyle(""); // Clear any styles or set to your default style
+        }
+
+        // Apply the style to the clicked ImageView
+        clickedImageView.setStyle("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 20, 0.5, 0, 0);");
+        // Update the currently highlighted ImageView
+        currentlyHighlighted = clickedImageView;
+
+        // Update the selected item
         selectedItem = imageViewItemMap.get(clickedImageView);
         System.out.println("Selected item: " + selectedItem.getName());
     }
@@ -237,6 +267,7 @@ public class MainPageController extends NavigateController{
             Tooltip tooltip = new Tooltip(tooltipText);
             tooltip.setShowDelay(Duration.ZERO);
             tooltip.setShowDuration(Duration.INDEFINITE);
+            tooltip.setStyle("-fx-font-size: 15px;");
             Tooltip.install(imageView, tooltip);
         }
     }
@@ -329,6 +360,7 @@ public class MainPageController extends NavigateController{
 
 
 
+
             cartItemsBeforePaying.addAll(cartItems);
 
             itemQuantitiesBeforePaying.putAll(itemQuantities);
@@ -370,6 +402,7 @@ public class MainPageController extends NavigateController{
             BigDecimal totalPrice = price.multiply(quantity); // Multiply price by quantity
             sum = sum.add(totalPrice); // Add the total price to the sum
         }
+        sumForCurrentOrder = sum;
         totalSum.set(sum.doubleValue()); // Update the total sum property, convert BigDecimal to double
     }
 
@@ -384,5 +417,8 @@ public class MainPageController extends NavigateController{
         return itemQuantitiesBeforePaying;
     }
 
+    public static BigDecimal returnTotalSum() {
+        return sumForCurrentOrder;
+    }
 
 }
