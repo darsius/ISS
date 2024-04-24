@@ -11,31 +11,31 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="840.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiecto.Controller.MainPageController">
+<AnchorPane prefHeight="840.0" prefWidth="1400.0" style="-fx-background-color: #9FFDE1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiecto.Controller.MainPageController">
    <children>
-      <ImageView fx:id="doughnut1ImageView" fitHeight="123.0" fitWidth="142.0" layoutX="176.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="doughnut1ImageView" fitHeight="156.0" fitWidth="188.0" layoutX="101.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Images/doughnut1.jpeg" />
          </image>
       </ImageView>
-      <Pane prefHeight="80.0" prefWidth="1400.0" style="-fx-background-color: red;">
+      <Pane prefHeight="80.0" prefWidth="1400.0" style="-fx-background-color: #A8F594;">
          <children>
             <Label layoutX="119.0" layoutY="26.0" style="-fx-font-family: Comic Sans MS;" text="La Donuț">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
-            <Button fx:id="logOutButton" layoutX="1300.0" layoutY="25.0" mnemonicParsing="false" text="Log Out">
+            <Button fx:id="logOutButton" layoutX="1300.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #049E99;" text="Log Out" textFill="WHITE">
                <font>
                   <Font size="19.0" />
                </font>
             </Button>
-            <Button fx:id="goToOrdersHistoryButton" layoutX="1200.0" layoutY="25.0" mnemonicParsing="false" text="History">
+            <Button fx:id="goToOrdersHistoryButton" layoutX="1200.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #049E99;" text="History" textFill="WHITE">
                <font>
                   <Font size="19.0" />
                </font>
             </Button>
-            <Button fx:id="goToOrderButton" layoutX="1045.0" layoutY="25.0" mnemonicParsing="false" text="Current Order">
+            <Button fx:id="goToOrderButton" layoutX="1045.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #049E99;" text="Current Order" textFill="WHITE">
                <font>
                   <Font size="19.0" />
                </font>
@@ -43,44 +43,44 @@
             <Button layoutX="17.0" layoutY="28.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="28.0" text="&lt;" />
             <Button layoutX="50.0" layoutY="28.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="28.0" text="&gt;" />
          </children></Pane>
-      <Pane layoutY="730.0" prefHeight="110.0" prefWidth="1400.0" style="-fx-background-color: blue;">
+      <Pane layoutY="730.0" prefHeight="110.0" prefWidth="1400.0" style="-fx-background-color: #A8F594;">
          <children>
-            <Label layoutX="18.0" layoutY="12.0" text="Contact" textFill="WHITE">
+            <Label layoutX="18.0" layoutY="12.0" text="Contact" textFill="#135e0f">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <Label layoutX="42.0" layoutY="38.0" text="+40766489390" textFill="WHITE">
+            <Label layoutX="42.0" layoutY="38.0" text="+40766489390" textFill="#135e0f">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label layoutX="42.0" layoutY="60.0" text="donuts.12@gmail.com" textFill="WHITE">
+            <Label layoutX="42.0" layoutY="60.0" text="donuts.12@gmail.com" textFill="#135e0f">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label layoutX="1300.0" layoutY="20.0" text="Instagram" textFill="WHITE">
+            <Label layoutX="1300.0" layoutY="20.0" text="Instagram" textFill="#135e0f">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label layoutX="1300.0" layoutY="54.0" text="Facebook" textFill="WHITE">
+            <Label layoutX="1300.0" layoutY="54.0" text="Facebook" textFill="#135e0f">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label layoutX="380.0" layoutY="16.0" text="Adress" textFill="WHITE">
+            <Label layoutX="380.0" layoutY="16.0" text="Adress" textFill="#135e0f">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <Label layoutX="426.0" layoutY="47.0" text="Bulevardul 1 Decembrie, nr 88" textFill="WHITE">
+            <Label layoutX="426.0" layoutY="47.0" text="Bulevardul 1 Decembrie, nr 88" textFill="#135e0f">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label layoutX="838.0" layoutY="16.0" text="2023 Best Doughnut Shop Award" textFill="WHITE">
+            <Label layoutX="838.0" layoutY="16.0" text="2023 Best Doughnut Shop Award" textFill="#135e0f">
                <font>
                   <Font size="23.0" />
                </font>
@@ -91,22 +91,22 @@
             <Image url="@../../../../Images/doughnut2.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="doughnut5ImageView" fitHeight="123.0" fitWidth="142.0" layoutX="368.0" layoutY="416.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="doughnut5ImageView" fitHeight="153.0" fitWidth="160.0" layoutX="341.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Images/doughnut5.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="doughnut4ImageView" fitHeight="123.0" fitWidth="142.0" layoutX="123.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="doughnut4ImageView" fitHeight="131.0" fitWidth="139.0" layoutX="107.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Images/doughnut4.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="doughnut3ImageView" fitHeight="123.0" fitWidth="142.0" layoutX="617.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="doughnut3ImageView" fitHeight="126.0" fitWidth="130.0" layoutX="571.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Images/doughnut6.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="doughnut6ImageView" fitHeight="113.0" fitWidth="111.0" layoutX="584.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="doughnut6ImageView" fitHeight="146.0" fitWidth="139.0" layoutX="584.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Images/doughnut3.jpeg" />
          </image>
@@ -116,34 +116,34 @@
             <Image url="@../../../../Images/doughnut7.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="doughnut8ImageView" fitHeight="132.0" fitWidth="137.0" layoutX="387.0" layoutY="602.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="doughnut8ImageView" fitHeight="174.0" fitWidth="169.0" layoutX="350.0" layoutY="560.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Images/doughnut8.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="doughnut9ImageView" fitHeight="178.0" fitWidth="188.0" layoutX="553.0" layoutY="517.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="doughnut9ImageView" fitHeight="201.0" fitWidth="231.0" layoutX="553.0" layoutY="494.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../Images/doughnut9.png" />
          </image>
       </ImageView>
-      <Button fx:id="addButton" layoutX="851.0" layoutY="177.0" mnemonicParsing="false" onAction="#addToCart" text="Add To Cart">
+      <Button fx:id="addButton" layoutX="851.0" layoutY="177.0" mnemonicParsing="false" onAction="#addToCart" style="-fx-background-color: #049E99;" text="Add To Cart" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="851.0" layoutY="240.0" mnemonicParsing="false" onAction="#removeSelectedItem" text="Remove From Cart">
+      <Button layoutX="851.0" layoutY="240.0" mnemonicParsing="false" onAction="#removeSelectedItem" style="-fx-background-color: #049E99;" text="Remove From Cart" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Label layoutX="1161.0" layoutY="132.0" text="Offers of the week">
+      <Label layoutX="1161.0" layoutY="132.0" text="Upcoming..." textFill="#135e0f">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
       <ScrollPane layoutX="842.0" layoutY="326.0" prefHeight="284.0" prefWidth="331.0">
          <content>
-            <TableView fx:id="cartTable" prefHeight="282.0" prefWidth="334.0">
+            <TableView fx:id="cartTable" prefHeight="282.0" prefWidth="334.0" style="-fx-background-color: #A8F594;">
               <columns>
                 <TableColumn prefWidth="200.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="Quantity" />
@@ -151,30 +151,23 @@
             </TableView>
          </content>
       </ScrollPane>
-      <Label layoutX="1231.0" layoutY="197.0" text="Offer 1">
+      <Button fx:id="payAndPlaceOrderButton" layoutX="982.0" layoutY="641.0" mnemonicParsing="false" onAction="#handlePayAndPlaceOrder" style="-fx-background-color: #025295;" text="Pay &amp; Place Order" textFill="WHITE">
          <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="1242.0" layoutY="292.0" text="Offer 1">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="1246.0" layoutY="388.0" text="Offer 1">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="payAndPlaceOrderButton" layoutX="1087.0" layoutY="644.0" mnemonicParsing="false" onAction="#handlePayAndPlaceOrder" text="Pay &amp; Place Order">
-         <font>
-            <Font size="24.0" />
+            <Font size="22.0" />
          </font>
       </Button>
-      <Button fx:id="selectDoughnutImageButton" layoutX="255.0" layoutY="116.0" mnemonicParsing="false" text="Select Image for Doughnut" />
-      <Label fx:id="totalSumLabel" layoutX="902.0" layoutY="653.0" text="Cart total sum is ">
+      <Button fx:id="selectDoughnutImageButton" layoutX="101.0" layoutY="130.0" mnemonicParsing="false" style="-fx-background-color: #049E99;" text="Select Image for Doughnut" textFill="WHITE">
+         <font>
+            <Font size="17.0" />
+         </font></Button>
+      <Label fx:id="totalSumLabel" layoutX="850.0" layoutY="653.0" text="total" textFill="#115679">
          <font>
             <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="1196.0" layoutY="172.0" prefHeight="0.0" prefWidth="184.0" text="Offers of the week" textFill="#135e0f">
+         <font>
+            <Font size="24.0" />
          </font>
       </Label>
 
