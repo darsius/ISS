@@ -25,12 +25,12 @@
                   <Font name="DIN Alternate Bold" size="19.0" />
                </font>
             </Button>
-            <Button fx:id="goToOrdersHistoryButton" layoutX="1205.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #049E99;" text="History" textFill="WHITE">
+            <Button fx:id="goToOrdersHistoryButton" layoutX="1140.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #049E99;" text="Orders History" textFill="WHITE">
                <font>
                   <Font name="DIN Alternate Bold" size="19.0" />
                </font>
             </Button>
-            <Button fx:id="goToOrderButton" layoutX="1052.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #049E99;" text="Current Order" textFill="WHITE">
+            <Button fx:id="goToOrderButton" layoutX="982.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #049E99;" text="Current Order" textFill="WHITE">
                <font>
                   <Font name="DIN Alternate Bold" size="19.0" />
                </font>

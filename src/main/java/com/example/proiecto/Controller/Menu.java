@@ -12,11 +12,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalTime;
 import java.util.List;
 
-public class Menu {
+public class Menu extends NavigateController{
 
     @FXML
     TableView<Item> allDoughnutsTable;
@@ -40,6 +41,10 @@ public class Menu {
     private ItemDAO itemDAO = new ItemDAO();
 
     private static LocalTime deliveryTime = LocalTime.of(0, 20);
+
+    @FXML private Button goToMainPageButton;
+    @FXML private Button logOutButton;
+
 
     public Menu() {
     }
@@ -132,6 +137,9 @@ public class Menu {
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         TableColumn<Item, String> colDescription = new TableColumn<>("Description");
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+
+        colName.setPrefWidth(130);
+
         tableView.getColumns().setAll(colName, colPrice, colDescription);
     }
 
@@ -293,5 +301,15 @@ public class Menu {
                 System.out.println("Failed to update item status.");
             }
         }
+    }
+
+    @FXML
+    private void switchToLogIn(ActionEvent event) throws IOException {
+        super.switchToLogInView(event);
+    }
+
+    @FXML
+    private void switchToMainPage(ActionEvent event) throws IOException {
+        super.switchMainPageView(event);
     }
 }

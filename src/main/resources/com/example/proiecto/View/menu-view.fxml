@@ -2,56 +2,76 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="840.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiecto.Controller.Menu">
+<AnchorPane prefHeight="840.0" prefWidth="1400.0" style="-fx-background-color: #9FFDE1;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiecto.Controller.Menu">
    <children>
-      <Label layoutX="624.0" layoutY="47.0" text="Welcome, Admin">
+      <Label layoutX="624.0" layoutY="47.0" text="Welcome, Admin!">
          <font>
-            <Font size="24.0" />
+            <Font name="DIN Alternate Bold" size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="doughnutsMenuTable" layoutX="96.0" layoutY="140.0" prefHeight="240.0" prefWidth="365.0" />
-      <TableView layoutX="806.0" layoutY="145.0" prefHeight="242.0" prefWidth="365.0">
-         <columns>
-            <TableColumn prefWidth="193.60405731201172" text="Offer Name" />
-            <TableColumn prefWidth="91.864013671875" text="Price" />
-            <TableColumn prefWidth="78.13595581054688" text="Quantity" />
-         </columns>
-      </TableView>
-      <Button layoutX="513.0" layoutY="345.0" mnemonicParsing="false" onAction="#removeItemFromMenu" text="Remove From Menu" />
-      <Label layoutX="96.0" layoutY="92.0" text="Current Menu">
+      <TableView fx:id="doughnutsMenuTable" layoutX="908.0" layoutY="158.0" prefHeight="373.0" prefWidth="421.0" />
+      <Button layoutX="1031.0" layoutY="556.0" mnemonicParsing="false" onAction="#removeItemFromMenu" style="-fx-background-color: #049E99;" text="Remove From Menu" textFill="WHITE">
          <font>
-            <Font size="16.0" />
+            <Font name="DIN Alternate Bold" size="18.0" />
+         </font></Button>
+      <Label layoutX="908.0" layoutY="128.0" text="Current Menu">
+         <font>
+            <Font name="DIN Alternate Bold" size="16.0" />
          </font>
       </Label>
-      <TableView fx:id="allDoughnutsTable" layoutX="90.0" layoutY="449.0" prefHeight="365.0" prefWidth="365.0" />
-      <Button fx:id="addToMenuButton" layoutX="487.0" layoutY="784.0" mnemonicParsing="false" onAction="#addItemToMenu" text="Add Item To Menu" />
-      <Label layoutX="97.0" layoutY="410.0" text="All Doughnuts">
+      <TableView fx:id="allDoughnutsTable" layoutX="77.0" layoutY="182.0" prefHeight="485.0" prefWidth="365.0" />
+      <Button fx:id="addToMenuButton" layoutX="540.0" layoutY="614.0" mnemonicParsing="false" onAction="#addItemToMenu" style="-fx-background-color: #049E99;" text="Add Item To Menu" textFill="WHITE">
          <font>
-            <Font size="16.0" />
+            <Font name="DIN Alternate Bold" size="18.0" />
+         </font></Button>
+      <Label layoutX="77.0" layoutY="145.0" text="All Doughnuts">
+         <font>
+            <Font name="DIN Alternate Bold" size="16.0" />
          </font>
       </Label>
-      <Button layoutX="489.0" layoutY="740.0" mnemonicParsing="false" onAction="#updateItem" text="Update Item" />
-      <TextField fx:id="doughnutNameField" layoutX="490.0" layoutY="453.0" promptText="new name" />
-      <TextField fx:id="doughnutPriceField" layoutX="488.0" layoutY="489.0" promptText="new price" />
-      <TextArea fx:id="doughnutDescriptionField" layoutX="482.0" layoutY="526.0" prefHeight="193.0" prefWidth="264.0" promptText="new description" />
-      <Button fx:id="addItem" layoutX="591.0" layoutY="740.0" mnemonicParsing="false" onAction="#addItemToAllDoughnutsTable" text="Add Item" />
-      <Button layoutX="689.0" layoutY="453.0" mnemonicParsing="false" onAction="#clearTextFields" text="Clear Fields" />
-      <Button fx:id="deleteItem" layoutX="676.0" layoutY="740.0" mnemonicParsing="false" onAction="#removeItem" text="Remove Item" />
-      <TextField fx:id="deliveryTimeTF" layoutX="1009.0" layoutY="589.0">
+      <Button layoutX="568.0" layoutY="510.0" mnemonicParsing="false" onAction="#updateItem" style="-fx-background-color: #049E99;" text="Update Item" textFill="WHITE">
+         <font>
+            <Font name="DIN Alternate Bold" size="13.0" />
+         </font></Button>
+      <TextField fx:id="doughnutNameField" layoutX="489.0" layoutY="199.0" promptText="name" />
+      <TextField fx:id="doughnutPriceField" layoutX="489.0" layoutY="246.0" promptText="price" />
+      <TextArea fx:id="doughnutDescriptionField" layoutX="489.0" layoutY="293.0" prefHeight="193.0" prefWidth="264.0" promptText="description" />
+      <Button fx:id="addItem" layoutX="487.0" layoutY="510.0" mnemonicParsing="false" onAction="#addItemToAllDoughnutsTable" style="-fx-background-color: #049E99;" text="Add Item" textFill="WHITE">
+         <font>
+            <Font name="DIN Alternate Bold" size="13.0" />
+         </font></Button>
+      <Button layoutX="577.0" layoutY="559.0" mnemonicParsing="false" onAction="#clearTextFields" style="-fx-background-color: #049E99;" text="Clear Fields" textFill="WHITE">
+         <font>
+            <Font name="DIN Alternate Bold" size="13.0" />
+         </font></Button>
+      <Button fx:id="deleteItem" layoutX="666.0" layoutY="512.0" mnemonicParsing="false" onAction="#removeItem" style="-fx-background-color: #049E99;" text="Remove Item" textFill="WHITE">
+         <font>
+            <Font name="DIN Alternate Bold" size="13.0" />
+         </font></Button>
+      <TextField fx:id="deliveryTimeTF" layoutX="1020.0" layoutY="634.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <Button fx:id="deliveryTimeButton" layoutX="1028.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleSetDeliveryTime" text="Set Delivery Time">
+      <Button fx:id="deliveryTimeButton" layoutX="1019.0" layoutY="679.0" mnemonicParsing="false" onAction="#handleSetDeliveryTime" style="-fx-background-color: #049E99;" text="Set Delivery Time" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font name="DIN Alternate Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="goToMainPageButton" layoutX="1123.0" layoutY="37.0" mnemonicParsing="false" onAction="#switchToMainPage" style="-fx-background-color: #049E99;" text="Main Page" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <Button fx:id="logOutButton" layoutX="1261.0" layoutY="37.0" mnemonicParsing="false" onAction="#switchToLogIn" style="-fx-background-color: #049E99;" text="Log Out" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
          </font>
       </Button>
    </children>
